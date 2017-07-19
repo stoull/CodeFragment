@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DTL-GF-EEN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 2-->
+        <scene sceneID="7dC-Le-467">
+            <objects>
+                <viewController id="qTP-sV-B3z" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tbG-3e-Zx5"/>
+                        <viewControllerLayoutGuide type="bottom" id="rug-Tt-ZfL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wcW-xC-bzG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="2dD-Fa-4TY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gIz-cC-jPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045" y="637"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="MMo-Lk-LYF">
+            <objects>
+                <viewController id="WsH-rI-yqp" customClass="ViewController" customModule="FaceDetector" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oow-Kh-Tke"/>
+                        <viewControllerLayoutGuide type="bottom" id="FuS-hg-zCP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6u8-lQ-WeV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Missandei.png" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-kU-zSx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="NHe-eO-utu"/>
+                    <connections>
+                        <outlet property="processImage" destination="8ML-kU-zSx" id="huI-vf-wd1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kre-Rj-Mtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="-18.440779610194905"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="laa-TB-5eV">
+            <objects>
+                <tabBarController id="DTL-GF-EEN" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="CCs-0q-PUp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="WsH-rI-yqp" kind="relationship" relationship="viewControllers" id="4SQ-hr-tZA"/>
+                        <segue destination="qTP-sV-B3z" kind="relationship" relationship="viewControllers" id="zCk-lI-bkb"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HU6-ZR-e6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="309"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Missandei.png" width="750" height="1334"/>
+    </resources>
+</document>
