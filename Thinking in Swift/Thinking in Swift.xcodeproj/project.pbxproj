@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C90C2B771F1F974F00761486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C2B761F1F974F00761486 /* AppDelegate.swift */; };
-		C90C2B791F1F974F00761486 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C2B781F1F974F00761486 /* ViewController.swift */; };
-		C90C2B7C1F1F974F00761486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C90C2B7A1F1F974F00761486 /* Main.storyboard */; };
-		C90C2B7E1F1F974F00761486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C90C2B7D1F1F974F00761486 /* Assets.xcassets */; };
-		C90C2B811F1F974F00761486 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C90C2B7F1F1F974F00761486 /* LaunchScreen.storyboard */; };
-		C90C2B8B1F1F9C6000761486 /* Missandei.png in Resources */ = {isa = PBXBuildFile; fileRef = C90C2B8A1F1F9C6000761486 /* Missandei.png */; };
+		C9E61B1E1F2E2C19003E5CBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B1D1F2E2C19003E5CBB /* AppDelegate.swift */; };
+		C9E61B201F2E2C19003E5CBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B1F1F2E2C19003E5CBB /* ViewController.swift */; };
+		C9E61B231F2E2C19003E5CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E61B211F2E2C19003E5CBB /* Main.storyboard */; };
+		C9E61B251F2E2C19003E5CBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E61B241F2E2C19003E5CBB /* Assets.xcassets */; };
+		C9E61B281F2E2C19003E5CBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E61B261F2E2C19003E5CBB /* LaunchScreen.storyboard */; };
+		C9E61B301F2E2C2A003E5CBB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C90C2B731F1F974F00761486 /* FaceDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C90C2B761F1F974F00761486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C90C2B781F1F974F00761486 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C90C2B7B1F1F974F00761486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C90C2B7D1F1F974F00761486 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C90C2B801F1F974F00761486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C90C2B821F1F974F00761486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C90C2B8A1F1F9C6000761486 /* Missandei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Missandei.png; sourceTree = "<group>"; };
+		C9E61B1A1F2E2C19003E5CBB /* Thinking in Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thinking in Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9E61B1D1F2E2C19003E5CBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C9E61B1F1F2E2C19003E5CBB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C9E61B221F2E2C19003E5CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C9E61B241F2E2C19003E5CBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C9E61B271F2E2C19003E5CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C9E61B291F2E2C19003E5CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C90C2B701F1F974F00761486 /* Frameworks */ = {
+		C9E61B171F2E2C19003E5CBB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,74 +37,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C90C2B6A1F1F974F00761486 = {
+		C9E61B111F2E2C19003E5CBB = {
 			isa = PBXGroup;
 			children = (
-				C90C2B751F1F974F00761486 /* FaceDetector */,
-				C90C2B741F1F974F00761486 /* Products */,
+				C9E61B1C1F2E2C19003E5CBB /* Thinking in Swift */,
+				C9E61B1B1F2E2C19003E5CBB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C90C2B741F1F974F00761486 /* Products */ = {
+		C9E61B1B1F2E2C19003E5CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C90C2B731F1F974F00761486 /* FaceDetector.app */,
+				C9E61B1A1F2E2C19003E5CBB /* Thinking in Swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C90C2B751F1F974F00761486 /* FaceDetector */ = {
+		C9E61B1C1F2E2C19003E5CBB /* Thinking in Swift */ = {
 			isa = PBXGroup;
 			children = (
-				C90C2B761F1F974F00761486 /* AppDelegate.swift */,
-				C90C2B781F1F974F00761486 /* ViewController.swift */,
-				C90C2B7A1F1F974F00761486 /* Main.storyboard */,
-				C90C2B8A1F1F9C6000761486 /* Missandei.png */,
-				C90C2B7D1F1F974F00761486 /* Assets.xcassets */,
-				C90C2B7F1F1F974F00761486 /* LaunchScreen.storyboard */,
-				C90C2B821F1F974F00761486 /* Info.plist */,
+				C9E61B1D1F2E2C19003E5CBB /* AppDelegate.swift */,
+				C9E61B1F1F2E2C19003E5CBB /* ViewController.swift */,
+				C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */,
+				C9E61B211F2E2C19003E5CBB /* Main.storyboard */,
+				C9E61B241F2E2C19003E5CBB /* Assets.xcassets */,
+				C9E61B261F2E2C19003E5CBB /* LaunchScreen.storyboard */,
+				C9E61B291F2E2C19003E5CBB /* Info.plist */,
 			);
-			path = FaceDetector;
+			path = "Thinking in Swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C90C2B721F1F974F00761486 /* FaceDetector */ = {
+		C9E61B191F2E2C19003E5CBB /* Thinking in Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C90C2B851F1F974F00761486 /* Build configuration list for PBXNativeTarget "FaceDetector" */;
+			buildConfigurationList = C9E61B2C1F2E2C19003E5CBB /* Build configuration list for PBXNativeTarget "Thinking in Swift" */;
 			buildPhases = (
-				C90C2B6F1F1F974F00761486 /* Sources */,
-				C90C2B701F1F974F00761486 /* Frameworks */,
-				C90C2B711F1F974F00761486 /* Resources */,
+				C9E61B161F2E2C19003E5CBB /* Sources */,
+				C9E61B171F2E2C19003E5CBB /* Frameworks */,
+				C9E61B181F2E2C19003E5CBB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = FaceDetector;
-			productName = FaceDetector;
-			productReference = C90C2B731F1F974F00761486 /* FaceDetector.app */;
+			name = "Thinking in Swift";
+			productName = "Thinking in Swift";
+			productReference = C9E61B1A1F2E2C19003E5CBB /* Thinking in Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C90C2B6B1F1F974F00761486 /* Project object */ = {
+		C9E61B121F2E2C19003E5CBB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CCApril;
 				TargetAttributes = {
-					C90C2B721F1F974F00761486 = {
+					C9E61B191F2E2C19003E5CBB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = V4W9C35KR3;
 						ProvisioningStyle = Manual;
 					};
 				};
 			};
-			buildConfigurationList = C90C2B6E1F1F974F00761486 /* Build configuration list for PBXProject "FaceDetector" */;
+			buildConfigurationList = C9E61B151F2E2C19003E5CBB /* Build configuration list for PBXProject "Thinking in Swift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -112,55 +111,55 @@
 				en,
 				Base,
 			);
-			mainGroup = C90C2B6A1F1F974F00761486;
-			productRefGroup = C90C2B741F1F974F00761486 /* Products */;
+			mainGroup = C9E61B111F2E2C19003E5CBB;
+			productRefGroup = C9E61B1B1F2E2C19003E5CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C90C2B721F1F974F00761486 /* FaceDetector */,
+				C9E61B191F2E2C19003E5CBB /* Thinking in Swift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C90C2B711F1F974F00761486 /* Resources */ = {
+		C9E61B181F2E2C19003E5CBB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C90C2B811F1F974F00761486 /* LaunchScreen.storyboard in Resources */,
-				C90C2B8B1F1F9C6000761486 /* Missandei.png in Resources */,
-				C90C2B7E1F1F974F00761486 /* Assets.xcassets in Resources */,
-				C90C2B7C1F1F974F00761486 /* Main.storyboard in Resources */,
+				C9E61B281F2E2C19003E5CBB /* LaunchScreen.storyboard in Resources */,
+				C9E61B251F2E2C19003E5CBB /* Assets.xcassets in Resources */,
+				C9E61B231F2E2C19003E5CBB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C90C2B6F1F1F974F00761486 /* Sources */ = {
+		C9E61B161F2E2C19003E5CBB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C90C2B791F1F974F00761486 /* ViewController.swift in Sources */,
-				C90C2B771F1F974F00761486 /* AppDelegate.swift in Sources */,
+				C9E61B201F2E2C19003E5CBB /* ViewController.swift in Sources */,
+				C9E61B301F2E2C2A003E5CBB /* TableViewController.swift in Sources */,
+				C9E61B1E1F2E2C19003E5CBB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C90C2B7A1F1F974F00761486 /* Main.storyboard */ = {
+		C9E61B211F2E2C19003E5CBB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C90C2B7B1F1F974F00761486 /* Base */,
+				C9E61B221F2E2C19003E5CBB /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C90C2B7F1F1F974F00761486 /* LaunchScreen.storyboard */ = {
+		C9E61B261F2E2C19003E5CBB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C90C2B801F1F974F00761486 /* Base */,
+				C9E61B271F2E2C19003E5CBB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -168,7 +167,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C90C2B831F1F974F00761486 /* Debug */ = {
+		C9E61B2A1F2E2C19003E5CBB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -219,7 +218,7 @@
 			};
 			name = Debug;
 		};
-		C90C2B841F1F974F00761486 /* Release */ = {
+		C9E61B2B1F2E2C19003E5CBB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -263,34 +262,30 @@
 			};
 			name = Release;
 		};
-		C90C2B861F1F974F00761486 /* Debug */ = {
+		C9E61B2D1F2E2C19003E5CBB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = V4W9C35KR3;
-				INFOPLIST_FILE = FaceDetector/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Thinking in Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.linkapp.demoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.april.Thinking-in-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ac95ae40-1e62-4bda-80a6-8bbba89d9d41";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.linkapp.demoApp";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		C90C2B871F1F974F00761486 /* Release */ = {
+		C9E61B2E1F2E2C19003E5CBB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = V4W9C35KR3;
-				INFOPLIST_FILE = FaceDetector/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Thinking in Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.linkapp.demoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.april.Thinking-in-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ac95ae40-1e62-4bda-80a6-8bbba89d9d41";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.linkapp.demoApp";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -298,25 +293,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C90C2B6E1F1F974F00761486 /* Build configuration list for PBXProject "FaceDetector" */ = {
+		C9E61B151F2E2C19003E5CBB /* Build configuration list for PBXProject "Thinking in Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C90C2B831F1F974F00761486 /* Debug */,
-				C90C2B841F1F974F00761486 /* Release */,
+				C9E61B2A1F2E2C19003E5CBB /* Debug */,
+				C9E61B2B1F2E2C19003E5CBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C90C2B851F1F974F00761486 /* Build configuration list for PBXNativeTarget "FaceDetector" */ = {
+		C9E61B2C1F2E2C19003E5CBB /* Build configuration list for PBXNativeTarget "Thinking in Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C90C2B861F1F974F00761486 /* Debug */,
-				C90C2B871F1F974F00761486 /* Release */,
+				C9E61B2D1F2E2C19003E5CBB /* Debug */,
+				C9E61B2E1F2E2C19003E5CBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C90C2B6B1F1F974F00761486 /* Project object */;
+	rootObject = C9E61B121F2E2C19003E5CBB /* Project object */;
 }

@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let drawRectView: DrawRectDemoView = DrawRectDemoView()
+        let drawRectView: DrawRectStartView = DrawRectStartView()
         
         let screenWidth = UIScreen.main.bounds.size.width
         let XPadding: CGFloat = 44.0
-        let YPadding: CGFloat = 160.0
+        let YPadding: CGFloat = 90.0
         drawRectView.backgroundColor = UIColor.gray
         drawRectView.frame = CGRect.init(x: XPadding, y: YPadding, width: screenWidth - 2 * XPadding, height: 120.0)
 //        drawRectView.setNeedsDisplay()
