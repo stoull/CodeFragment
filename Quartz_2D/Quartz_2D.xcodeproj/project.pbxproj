@@ -12,7 +12,11 @@
 		C9720ED61F2B53F400262FBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED41F2B53F400262FBC /* Main.storyboard */; };
 		C9720ED81F2B53F400262FBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED71F2B53F400262FBC /* Assets.xcassets */; };
 		C9720EDB1F2B53F400262FBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED91F2B53F400262FBC /* LaunchScreen.storyboard */; };
-		C9720EE51F2B544D00262FBC /* DrawRectDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE41F2B544D00262FBC /* DrawRectDemoView.swift */; };
+		C9720EE51F2B544D00262FBC /* DrawRectStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE41F2B544D00262FBC /* DrawRectStartView.swift */; };
+		C9720EE71F2C3A6900262FBC /* DrawRectDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE61F2C3A6900262FBC /* DrawRectDemoView.swift */; };
+		C9E61AE61F2CA668003E5CBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE51F2CA668003E5CBB /* UIKit.framework */; };
+		C9E61AE81F2CA673003E5CBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE71F2CA673003E5CBB /* Foundation.framework */; };
+		C9E61AEA1F2CA67A003E5CBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE91F2CA67A003E5CBB /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +27,11 @@
 		C9720ED71F2B53F400262FBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9720EDA1F2B53F400262FBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9720EDC1F2B53F400262FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9720EE41F2B544D00262FBC /* DrawRectDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectDemoView.swift; sourceTree = "<group>"; };
+		C9720EE41F2B544D00262FBC /* DrawRectStartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectStartView.swift; sourceTree = "<group>"; };
+		C9720EE61F2C3A6900262FBC /* DrawRectDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectDemoView.swift; sourceTree = "<group>"; };
+		C9E61AE51F2CA668003E5CBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C9E61AE71F2CA673003E5CBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C9E61AE91F2CA67A003E5CBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E61AEA1F2CA67A003E5CBB /* CoreGraphics.framework in Frameworks */,
+				C9E61AE81F2CA673003E5CBB /* Foundation.framework in Frameworks */,
+				C9E61AE61F2CA668003E5CBB /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +53,7 @@
 			children = (
 				C9720ECF1F2B53F400262FBC /* Quartz_2D */,
 				C9720ECE1F2B53F400262FBC /* Products */,
+				C9E61AE41F2CA668003E5CBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +70,24 @@
 			children = (
 				C9720ED01F2B53F400262FBC /* AppDelegate.swift */,
 				C9720ED21F2B53F400262FBC /* ViewController.swift */,
-				C9720EE41F2B544D00262FBC /* DrawRectDemoView.swift */,
+				C9720EE41F2B544D00262FBC /* DrawRectStartView.swift */,
+				C9720EE61F2C3A6900262FBC /* DrawRectDemoView.swift */,
 				C9720ED41F2B53F400262FBC /* Main.storyboard */,
 				C9720ED71F2B53F400262FBC /* Assets.xcassets */,
 				C9720ED91F2B53F400262FBC /* LaunchScreen.storyboard */,
 				C9720EDC1F2B53F400262FBC /* Info.plist */,
 			);
 			path = Quartz_2D;
+			sourceTree = "<group>";
+		};
+		C9E61AE41F2CA668003E5CBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9E61AE91F2CA67A003E5CBB /* CoreGraphics.framework */,
+				C9E61AE71F2CA673003E5CBB /* Foundation.framework */,
+				C9E61AE51F2CA668003E5CBB /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9720EE51F2B544D00262FBC /* DrawRectDemoView.swift in Sources */,
+				C9720EE51F2B544D00262FBC /* DrawRectStartView.swift in Sources */,
+				C9720EE71F2C3A6900262FBC /* DrawRectDemoView.swift in Sources */,
 				C9720ED31F2B53F400262FBC /* ViewController.swift in Sources */,
 				C9720ED11F2B53F400262FBC /* AppDelegate.swift in Sources */,
 			);
@@ -305,6 +329,7 @@
 				C9720EE11F2B53F400262FBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

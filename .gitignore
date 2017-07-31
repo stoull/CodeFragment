@@ -1,6 +1,4 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+tignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated
 build/
@@ -38,6 +36,10 @@ playground.xcworkspace
 # Packages/
 # Package.pins
 .build/
+
+## Store file
+.DS_Store
+
 
 # CocoaPods
 #

@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             print("Found bounds are \(face.bounds)")
             var faceViewBounds = face.bounds.applying(transform)
             
-            // 计算真正的脸框的位置
+            // Calculate the position of rect which enclose face  
             let viewSize = processImage.bounds.size
             let scale = min(viewSize.width / ciImageSize.width, viewSize.height / ciImageSize.height)
             let offsetX = (viewSize.width - ciImageSize.width * scale) / 2
