@@ -13,6 +13,7 @@
 		C9E61B251F2E2C19003E5CBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E61B241F2E2C19003E5CBB /* Assets.xcassets */; };
 		C9E61B281F2E2C19003E5CBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E61B261F2E2C19003E5CBB /* LaunchScreen.storyboard */; };
 		C9E61B301F2E2C2A003E5CBB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */; };
+		C9E61B321F2F6818003E5CBB /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B311F2F6818003E5CBB /* ListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C9E61B271F2E2C19003E5CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9E61B291F2E2C19003E5CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C9E61B311F2F6818003E5CBB /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				C9E61B1D1F2E2C19003E5CBB /* AppDelegate.swift */,
 				C9E61B1F1F2E2C19003E5CBB /* ViewController.swift */,
+				C9E61B311F2F6818003E5CBB /* ListItem.swift */,
 				C9E61B2F1F2E2C2A003E5CBB /* TableViewController.swift */,
 				C9E61B211F2E2C19003E5CBB /* Main.storyboard */,
 				C9E61B241F2E2C19003E5CBB /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 				C9E61B201F2E2C19003E5CBB /* ViewController.swift in Sources */,
 				C9E61B301F2E2C2A003E5CBB /* TableViewController.swift in Sources */,
 				C9E61B1E1F2E2C19003E5CBB /* AppDelegate.swift in Sources */,
+				C9E61B321F2F6818003E5CBB /* ListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +313,7 @@
 				C9E61B2E1F2E2C19003E5CBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
