@@ -9,7 +9,7 @@
 import UIKit
 import CoreGraphics
 
-class DrawRectStartViewTwo: UIView {
+class DrawRectViewTwo: UIView {
     
     override func draw(_ rect: CGRect) {
         
@@ -25,7 +25,7 @@ class DrawRectStartViewTwo: UIView {
             ctx.setFillColor(UIColor.green.cgColor)
             
             ctx.fillPath()
-            
+
             ctx.setStrokeColor(UIColor.red.cgColor)
             ctx.setLineWidth(8.0)
             ctx.stroke(rect)

@@ -12,12 +12,15 @@
 		C9720ED61F2B53F400262FBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED41F2B53F400262FBC /* Main.storyboard */; };
 		C9720ED81F2B53F400262FBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED71F2B53F400262FBC /* Assets.xcassets */; };
 		C9720EDB1F2B53F400262FBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9720ED91F2B53F400262FBC /* LaunchScreen.storyboard */; };
-		C9720EE51F2B544D00262FBC /* DrawRectStartViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE41F2B544D00262FBC /* DrawRectStartViewOne.swift */; };
-		C9720EE71F2C3A6900262FBC /* DrawRectStartViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE61F2C3A6900262FBC /* DrawRectStartViewTwo.swift */; };
+		C9720EE51F2B544D00262FBC /* DrawRectViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE41F2B544D00262FBC /* DrawRectViewOne.swift */; };
+		C9720EE71F2C3A6900262FBC /* DrawRectViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9720EE61F2C3A6900262FBC /* DrawRectViewTwo.swift */; };
 		C9E61AE61F2CA668003E5CBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE51F2CA668003E5CBB /* UIKit.framework */; };
 		C9E61AE81F2CA673003E5CBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE71F2CA673003E5CBB /* Foundation.framework */; };
 		C9E61AEA1F2CA67A003E5CBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E61AE91F2CA67A003E5CBB /* CoreGraphics.framework */; };
-		C9E61B521F30D4E2003E5CBB /* DrawRectStartViewThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B511F30D4E2003E5CBB /* DrawRectStartViewThree.swift */; };
+		C9E61B521F30D4E2003E5CBB /* DrawRectViewThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E61B511F30D4E2003E5CBB /* DrawRectViewThree.swift */; };
+		E44B12FB1F32CE190044F6B8 /* DrawRectViewFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B12FA1F32CE190044F6B8 /* DrawRectViewFour.swift */; };
+		E44B12FD1F32D5220044F6B8 /* DrawRectViewFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B12FC1F32D5220044F6B8 /* DrawRectViewFive.swift */; };
+		E44B12FF1F32DBFE0044F6B8 /* DrawRectViewSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B12FE1F32DBFE0044F6B8 /* DrawRectViewSix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +31,15 @@
 		C9720ED71F2B53F400262FBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9720EDA1F2B53F400262FBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9720EDC1F2B53F400262FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9720EE41F2B544D00262FBC /* DrawRectStartViewOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectStartViewOne.swift; sourceTree = "<group>"; };
-		C9720EE61F2C3A6900262FBC /* DrawRectStartViewTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectStartViewTwo.swift; sourceTree = "<group>"; };
+		C9720EE41F2B544D00262FBC /* DrawRectViewOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewOne.swift; sourceTree = "<group>"; };
+		C9720EE61F2C3A6900262FBC /* DrawRectViewTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewTwo.swift; sourceTree = "<group>"; };
 		C9E61AE51F2CA668003E5CBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9E61AE71F2CA673003E5CBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9E61AE91F2CA67A003E5CBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C9E61B511F30D4E2003E5CBB /* DrawRectStartViewThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectStartViewThree.swift; sourceTree = "<group>"; };
+		C9E61B511F30D4E2003E5CBB /* DrawRectViewThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewThree.swift; sourceTree = "<group>"; };
+		E44B12FA1F32CE190044F6B8 /* DrawRectViewFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewFour.swift; sourceTree = "<group>"; };
+		E44B12FC1F32D5220044F6B8 /* DrawRectViewFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewFive.swift; sourceTree = "<group>"; };
+		E44B12FE1F32DBFE0044F6B8 /* DrawRectViewSix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectViewSix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +78,12 @@
 			children = (
 				C9720ED01F2B53F400262FBC /* AppDelegate.swift */,
 				C9720ED21F2B53F400262FBC /* ViewController.swift */,
-				C9720EE41F2B544D00262FBC /* DrawRectStartViewOne.swift */,
-				C9720EE61F2C3A6900262FBC /* DrawRectStartViewTwo.swift */,
-				C9E61B511F30D4E2003E5CBB /* DrawRectStartViewThree.swift */,
+				C9720EE41F2B544D00262FBC /* DrawRectViewOne.swift */,
+				C9720EE61F2C3A6900262FBC /* DrawRectViewTwo.swift */,
+				C9E61B511F30D4E2003E5CBB /* DrawRectViewThree.swift */,
+				E44B12FA1F32CE190044F6B8 /* DrawRectViewFour.swift */,
+				E44B12FC1F32D5220044F6B8 /* DrawRectViewFive.swift */,
+				E44B12FE1F32DBFE0044F6B8 /* DrawRectViewSix.swift */,
 				C9720ED41F2B53F400262FBC /* Main.storyboard */,
 				C9720ED71F2B53F400262FBC /* Assets.xcassets */,
 				C9720ED91F2B53F400262FBC /* LaunchScreen.storyboard */,
@@ -165,10 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E61B521F30D4E2003E5CBB /* DrawRectStartViewThree.swift in Sources */,
-				C9720EE51F2B544D00262FBC /* DrawRectStartViewOne.swift in Sources */,
-				C9720EE71F2C3A6900262FBC /* DrawRectStartViewTwo.swift in Sources */,
+				C9E61B521F30D4E2003E5CBB /* DrawRectViewThree.swift in Sources */,
+				C9720EE51F2B544D00262FBC /* DrawRectViewOne.swift in Sources */,
+				C9720EE71F2C3A6900262FBC /* DrawRectViewTwo.swift in Sources */,
+				E44B12FF1F32DBFE0044F6B8 /* DrawRectViewSix.swift in Sources */,
 				C9720ED31F2B53F400262FBC /* ViewController.swift in Sources */,
+				E44B12FB1F32CE190044F6B8 /* DrawRectViewFour.swift in Sources */,
+				E44B12FD1F32D5220044F6B8 /* DrawRectViewFive.swift in Sources */,
 				C9720ED11F2B53F400262FBC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

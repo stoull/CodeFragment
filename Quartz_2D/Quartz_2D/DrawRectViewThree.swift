@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MyLayerDelegate: NSObject {
+class MyLayerDelegate: NSObject, CALayerDelegate{
+    
+    // CALayerDelegate
     func draw(_ layer: CALayer, in ctx: CGContext) {
         
         UIGraphicsPushContext(ctx)
@@ -19,19 +21,10 @@ class MyLayerDelegate: NSObject {
         UIColor.green.setFill()
         UIColor.red.setStroke()
         
+        // 调用UIBezierPath 的 fill , stroke方法
         fillPath.fill()
         fillPath.stroke()
         
         UIGraphicsPopContext()
     }
-}
-
-class DrawRectStartViewThree: UIView {
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 }
