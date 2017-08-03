@@ -45,7 +45,7 @@ class DrawRectViewSix: NSObject {
 //            let drawImage = UIGraphicsGetImageFromCurrentImageContext()
             
             UIGraphicsPopContext()
-            
+            free(imageData)
             return drawImage
         }else {
             return nil
