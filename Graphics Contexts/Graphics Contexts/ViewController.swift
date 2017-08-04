@@ -30,9 +30,44 @@ class ViewController: UIViewController {
          */
         
         
+        /*
+         导出画布（Graphics Contexts）的图像：
+         
+         UIKit:
+         UIGraphicsGetImageFromCurrentImageContext
+         UIGraphicsGetImageFromCurrentImageContext用来获取使用UIGraphicsBeginImageContext方法创建的bitmap图片的上下文绘制的图形。 因为 screenCTX 不是用 UIGraphicsBeginImageContext 创建的bitmap图形，所以获取不到对应的图形，返回的为nil
+         You should call this function only when a bitmap-based graphics context is the current graphics context. If the current context is nil or was not created by a call to UIGraphicsBeginImageContext, this function returns nil.
+         
+         
+         UIView: setNeedsDisplay() setNeedsDisplayInRect()
+         /*
+        You should use this method to request that a view be redrawn only when the content or appearance of the view change. If you simply change the geometry of the view, the view is typically not redrawn.
+         */
+         
+         
+         CALayer: setNeedsDisplay()
+         
+         Calling this method causes the layer to recache its content. This results in the layer potentially calling either the displayLayer: or drawLayer:inContext: method of its delegate. The existing content in the layer’s contents property is removed to make way for the new content.
+         
+         Core Graphics:
+         CGContext: makeImage()方法
+         
+         */
         
-        // 每一种获取Graphics Contexts的方法
-        //        let drawRectView: DrawRectViewOne = DrawRectViewOne()
+        
+        // 第一种获取Graphics Contexts的方法
+        let drawRectView: DrawRectOne = DrawRectOne()
+        let screenWidth = UIScreen.main.bounds.size.width
+        let XPadding: CGFloat = 44.0
+        let YPadding: CGFloat = 90.0
+        drawRectView.backgroundColor = UIColor.gray
+        drawRectView.frame = CGRect.init(x: XPadding, y: YPadding, width: screenWidth - 2 * XPadding, height: 120.0)
+        view.addSubview(drawRectView)
+        
+        
+        
+        // 第二种获取Graphics Contexts的方法
+        //        let drawRectView: DrawRectTwo = DrawRectViewTwo()
         //        let screenWidth = UIScreen.main.bounds.size.width
         //        let XPadding: CGFloat = 44.0
         //        let YPadding: CGFloat = 90.0
@@ -42,18 +77,7 @@ class ViewController: UIViewController {
         
         
         
-        // 每二种获取Graphics Contexts的方法
-        //        let drawRectView: DrawRectViewTwo = DrawRectViewTwo()
-        //        let screenWidth = UIScreen.main.bounds.size.width
-        //        let XPadding: CGFloat = 44.0
-        //        let YPadding: CGFloat = 90.0
-        //        drawRectView.backgroundColor = UIColor.gray
-        //        drawRectView.frame = CGRect.init(x: XPadding, y: YPadding, width: screenWidth - 2 * XPadding, height: 120.0)
-        //        view.addSubview(drawRectView)
-        
-        
-        
-        // 每三种获取Graphics Contexts的方法
+        // 第三种获取Graphics Contexts的方法
 //        let myLayer = CALayer()
 //        myLayer.backgroundColor = UIColor.gray.cgColor
 //        let screenWidth = UIScreen.main.bounds.size.width
@@ -65,23 +89,23 @@ class ViewController: UIViewController {
 //        view.layer.addSublayer(myLayer)
         
         // 每四种获取Graphics Contexts的方法
-//        let myLayer = DrawRectViewFour()
+//        let myLayer = DrawRectFour()
 //        myLayer.backgroundColor = UIColor.gray.cgColor
 //        let screenWidth = UIScreen.main.bounds.size.width
 //        let XPadding: CGFloat = 44.0
 //        let YPadding: CGFloat = 90.0
 //        myLayer.frame = CGRect.init(x: XPadding, y: YPadding, width: screenWidth - 2 * XPadding, height: 120.0);
-//        myLayer .setNeedsDisplay()
+//        myLayer.setNeedsDisplay()
 //        view.layer.addSublayer(myLayer)
         
         
         
-        // 每五种获取Graphics Contexts的方法
+        // 第五种获取Graphics Contexts的方法
         //        let XPadding: CGFloat = 44.0
         //        let YPadding: CGFloat = 90.0
         //        let imageView = UIImageView.init(frame: CGRect.init(x: XPadding, y: YPadding, width: 200.0, height: 200.0))
         //
-        //        let drewer = DrawRectViewFive()
+        //        let drewer = DrawRectFive()
         //        if let image = drewer.drawImage() {
         //            imageView.image = image
         //        }
@@ -89,34 +113,13 @@ class ViewController: UIViewController {
         //        view.addSubview(imageView)
         
         
-        // 每六种获取Graphics Contexts的方法
-        let XPadding: CGFloat = 44.0
-        let YPadding: CGFloat = 90.0
-        let imageView = UIImageView.init(frame: CGRect.init(x: XPadding, y: YPadding, width: 200.0, height: 200.0))
-
-        let drewer = DrawRectViewSix()
-        if let image = drewer.getDrawImage() {
-            imageView.image = image
-        }
-
-        view.addSubview(imageView)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        // Context 的切换及存储示例
+        // 第六种获取Graphics Contexts的方法
 //        let XPadding: CGFloat = 44.0
 //        let YPadding: CGFloat = 90.0
 //        let imageView = UIImageView.init(frame: CGRect.init(x: XPadding, y: YPadding, width: 200.0, height: 200.0))
 //
-//        let drewer = ManageContext()
-//        drewer.view = self.view
-//        if let image = drewer.exampleCGContextSaveGState() {
+//        let drewer = DrawRectSix()
+//        if let image = drewer.getDrawImage() {
 //            imageView.image = image
 //        }
 //
@@ -124,26 +127,18 @@ class ViewController: UIViewController {
         
         
         
-    }
-
-    @IBAction func showCurrentScreen(_ sender: Any) {
-        let screenSize = UIScreen.main.bounds.size
-        let screenImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+        // 第七种获取Graphics Contexts的方法 UIGraphicsImageRenderer
         
-        let drewer = ManageContext()
-        drewer.view = self.view
-        if let image = drewer.exampleUIGraphicsBeginImageContext() {
-            screenImageView.image = image
-        }
-        
-        view.addSubview(screenImageView)
+//        let XPadding: CGFloat = 44.0
+//        let YPadding: CGFloat = 90.0
+//        let imageView = UIImageView.init(frame: CGRect.init(x: XPadding, y: YPadding, width: 200.0, height: 200.0))
+//        
+//        let drewer = DrawRectSeven()
+//        if let image = drewer.getDrawImage() {
+//            imageView.image = image
+//        }
+//        
+//        view.addSubview(imageView)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

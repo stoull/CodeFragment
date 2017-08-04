@@ -10,7 +10,15 @@ import UIKit
 
 class DrawRectViewFour: CALayer {
 
+    /*
+     第四种获取Graphics Contexts的方法
+     
+     CALayer: draw(in ctx: CGContext)
+     
+     */
+    
     override func draw(in ctx: CGContext) {
+        
         let layerRect: CGRect = self.bounds;
 
         let padding: CGFloat = 20.0
@@ -25,6 +33,5 @@ class DrawRectViewFour: CALayer {
         ctx.setLineWidth(6.0)
 
         ctx.strokePath()
-//        ctx.fillPath()
     }
 }

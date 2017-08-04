@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Quartz_2D
+//  Graphics Contexts Manager
 //
-//  Created by Stoull Hut on 28/07/2017.
-//  Copyright © 2017 CCApril. All rights reserved.
+//  Created by linkapp on 04/08/2017.
+//  Copyright © 2017 Hut. All rights reserved.
 //
 
 import UIKit

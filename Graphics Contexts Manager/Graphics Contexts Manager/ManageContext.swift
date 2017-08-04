@@ -142,7 +142,7 @@ class ManageContext: NSObject {
     /*
      3. UIGraphicsBeginImageContext/UIGraphicsEndImageContext
      
-     UIGraphicsBeginImageContext: 快捷创建Bitmap context上下文的方法，并将该新建的上下文存储并设置为当前上下文。它做的工作相当CGContext.init 加上 UIGraphicsPushContext的工作。 Creates a bitmap-based graphics context with the specified options.
+     UIGraphicsBeginImageContext: 快捷创建Bitmap context上下文的方法，并将该新建的上下文存储并设置为当前上下文。它做了相当多的工作，像CGContext.init,将坐标系转换成UIKit的坐标系，以及UIGraphicsPushContext的工作。 Creates a bitmap-based graphics context with the specified options.
      UIGraphicsEndImageContext: 将存储栈顶的Bitmap context上下文件移除，并设置下一上下文为当前上下文。  Removes the current bitmap-based graphics context from the top of the stack.
      
      */
@@ -160,7 +160,7 @@ class ManageContext: NSObject {
             
             var screenShot: UIImage? = nil
             
-            // 使用 UIGraphicsBeginImageContextWithOptions 创建新的上下文,这个方法会新建的上文push成当前上下文
+            // 使用 UIGraphicsBeginImageContextWithOptions 创建新的上下文,这个方法会新建上文并push成当前上下文
             UIGraphicsBeginImageContextWithOptions(imageSize, false, scale)
             if let screenCTX = UIGraphicsGetCurrentContext() {
                 
