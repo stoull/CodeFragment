@@ -12,6 +12,9 @@
 		E47FF9F91F384C1F004D686D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47FF9F71F384C1F004D686D /* Main.storyboard */; };
 		E47FF9FB1F384C1F004D686D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47FF9FA1F384C1F004D686D /* Assets.xcassets */; };
 		E47FF9FE1F384C1F004D686D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47FF9FC1F384C1F004D686D /* LaunchScreen.storyboard */; };
+		E47FFA071F3966F3004D686D /* historyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FFA061F3966F3004D686D /* historyDocument.swift */; };
+		E47FFA091F396D77004D686D /* ViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FFA081F396D77004D686D /* ViewControllerTwo.swift */; };
+		E47FFA0D1F399818004D686D /* secureWipeFile.c in Sources */ = {isa = PBXBuildFile; fileRef = E47FFA0B1F399818004D686D /* secureWipeFile.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,11 @@
 		E47FF9FD1F384C1F004D686D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E47FF9FF1F384C1F004D686D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E47FFA051F384D90004D686D /* Securing_iOS_Data.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Securing_iOS_Data.entitlements; sourceTree = "<group>"; };
+		E47FFA061F3966F3004D686D /* historyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyDocument.swift; sourceTree = "<group>"; };
+		E47FFA081F396D77004D686D /* ViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTwo.swift; sourceTree = "<group>"; };
+		E47FFA0A1F399818004D686D /* Securing_iOS_Data-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Securing_iOS_Data-Bridging-Header.h"; sourceTree = "<group>"; };
+		E47FFA0B1F399818004D686D /* secureWipeFile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = secureWipeFile.c; sourceTree = "<group>"; };
+		E47FFA0C1F399818004D686D /* secureWipeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secureWipeFile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +66,15 @@
 				E47FFA051F384D90004D686D /* Securing_iOS_Data.entitlements */,
 				E47FF9F31F384C1E004D686D /* AppDelegate.swift */,
 				E47FF9F51F384C1F004D686D /* ViewController.swift */,
+				E47FFA081F396D77004D686D /* ViewControllerTwo.swift */,
+				E47FFA061F3966F3004D686D /* historyDocument.swift */,
+				E47FFA0B1F399818004D686D /* secureWipeFile.c */,
+				E47FFA0C1F399818004D686D /* secureWipeFile.h */,
 				E47FF9F71F384C1F004D686D /* Main.storyboard */,
 				E47FF9FA1F384C1F004D686D /* Assets.xcassets */,
 				E47FF9FC1F384C1F004D686D /* LaunchScreen.storyboard */,
 				E47FF9FF1F384C1F004D686D /* Info.plist */,
+				E47FFA0A1F399818004D686D /* Securing_iOS_Data-Bridging-Header.h */,
 			);
 			path = Securing_iOS_Data;
 			sourceTree = "<group>";
@@ -99,6 +112,7 @@
 					E47FF9EF1F384C1E004D686D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = V4W9C35KR3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -148,7 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E47FF9F61F384C1F004D686D /* ViewController.swift in Sources */,
+				E47FFA071F3966F3004D686D /* historyDocument.swift in Sources */,
 				E47FF9F41F384C1E004D686D /* AppDelegate.swift in Sources */,
+				E47FFA091F396D77004D686D /* ViewControllerTwo.swift in Sources */,
+				E47FFA0D1F399818004D686D /* secureWipeFile.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Securing_iOS_Data/Securing_iOS_Data.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = V4W9C35KR3;
@@ -281,6 +299,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.chen.Securing-iOS-Data";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Securing_iOS_Data/Securing_iOS_Data-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -289,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Securing_iOS_Data/Securing_iOS_Data.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = V4W9C35KR3;
@@ -297,6 +318,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.chen.Securing-iOS-Data";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Securing_iOS_Data/Securing_iOS_Data-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -320,6 +342,7 @@
 				E47FFA041F384C1F004D686D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
