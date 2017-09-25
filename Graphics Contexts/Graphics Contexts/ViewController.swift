@@ -51,7 +51,6 @@ class ViewController: UIViewController {
          
          Core Graphics:
          CGContext: makeImage()方法
-         
          */
         
         
