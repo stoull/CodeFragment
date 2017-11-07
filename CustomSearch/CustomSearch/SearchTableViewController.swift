@@ -117,15 +117,30 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
     
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
-        
+        var resultsArray: Array<String> = Array()
+        if let keywords = searchController.searchBar.text {
+            if let countryArry = countriesArray {
+                for countryString in countryArry {
+                    let cous: NSString = countryString as NSString
+                    if cous.contains(keywords) {
+                        resultsArray.append(countryString)
+                    }
+                }
+                searchResultVC.resultArray = resultsArray
+            }else {
+                searchResultVC.resultArray = Array()
+            }
+        }else {
+            searchResultVC.resultArray = Array()
+        }
     }
     
     // MARK: - UISearchControllerDelegate
     func willPresentSearchController(_ searchController: UISearchController) {
-        
+        print("willPresentSearchController")
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        
+        print("didDismissSearchController")
     }
 }

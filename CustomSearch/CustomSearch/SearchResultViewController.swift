@@ -13,12 +13,17 @@ let resultCellIdentifier = "resultCellIdentifier"
 class SearchResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var tableView: UITableView!
-    var resultArray: Array<Any>?
+    var resultArray: Array<Any>? {
+        didSet{
+            self.updateSearchResultWithUI()
+        }
+    }
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.white
         
         self.setupResultView();
     }
@@ -49,7 +54,8 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView.register(NSClassFromString("UITableViewCell"), forCellReuseIdentifier: resultCellIdentifier)
-        
+        tableView.frame = self.view.frame
+        self.view.addSubview(tableView)
     }
     
     // MARK: UITableViewDataSource
@@ -83,4 +89,10 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     }
     */
 
+    // MARK: - Custom function
+    
+    // MARK: 更新数据
+    func updateSearchResultWithUI() {
+        self.tableView.reloadData()
+    }
 }
