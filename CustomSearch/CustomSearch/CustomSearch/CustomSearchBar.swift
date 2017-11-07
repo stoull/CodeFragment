@@ -52,22 +52,22 @@ class CustomSearchBar: UISearchBar {
     let bottomLine = CAShapeLayer()
     var bottomLineColor = UIColor.clear
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        
-        for view in subviews {
-            if let searchField = view as? UITextField { self.setSearchFieldAppearance(searchField: searchField); break }
-            else {
-                for sView in view.subviews {
-                    if let searchField = sView as? UITextField { self.setSearchFieldAppearance(searchField: searchField); break }
-                }
-            }
-        }
-        
-        bottomLine.path = UIBezierPath(rect: CGRect.init(x: 0.0, y: frame.size.height - 1, width: frame.size.width, height: 1.0)).cgPath
-        bottomLine.fillColor = bottomLineColor.cgColor
-        layer.addSublayer(bottomLine)
-    }
+//    override public func layoutSubviews() {
+//        super.layoutSubviews()
+//
+//        for view in subviews {
+//            if let searchField = view as? UITextField { self.setSearchFieldAppearance(searchField: searchField); break }
+//            else {
+//                for sView in view.subviews {
+//                    if let searchField = sView as? UITextField { self.setSearchFieldAppearance(searchField: searchField); break }
+//                }
+//            }
+//        }
+//
+//        bottomLine.path = UIBezierPath(rect: CGRect.init(x: 0.0, y: frame.size.height - 1, width: frame.size.width, height: 1.0)).cgPath
+//        bottomLine.fillColor = bottomLineColor.cgColor
+//        layer.addSublayer(bottomLine)
+//    }
     
     func setSearchFieldAppearance(searchField: UITextField) {
         searchField.frame = CGRect.init(x: 5.0, y: 5.0, width: frame.size.width - 10.0, height: frame.size.height - 10.0)
