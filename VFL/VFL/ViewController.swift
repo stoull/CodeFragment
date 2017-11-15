@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         allConstraints += iconVerticalConstraints
         
         let topRowHorizontalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-hp-[iconImageView(iconImageViewWidth)-[GrapeviLabel]-[skipButton]-hp-|",
+            withVisualFormat: "H:|-hp-[iconImageView(iconImageViewWidth)]-[GrapeviLabel]-[skipButton]-hp-|",
             options: [.alignAllCenterY],
             metrics: metrics,
             views: views)
