@@ -1,8 +1,8 @@
 # Swift demo project for learners to practice for iOS. 
 
-* [Principle/UnderStandRunLoop](https://github.com/stoull/CodeFragment/tree/master/Principle/UnderStandRunLoop) : (Object-C)新创建的程线，Run Loop, Timer和使用及特性
+* [Principle/UnderStandRunLoop (Object-C)](https://github.com/stoull/CodeFragment/tree/master/Principle/UnderStandRunLoop) : 程线，Run Loop, Timer的使用及特性。
 
-* [CustomSearch](https://github.com/stoull/CodeFragment/tree/master/CustomSearch) : (swift 4.0) 基于系统的UISearchController 定制搜索界面
+* [CustomSearch (swift 4.0) ](https://github.com/stoull/CodeFragment/tree/master/CustomSearch) : 基于系统的UISearchController 定制搜索界面
 
 * [TableView](https://github.com/stoull/Swift-Demo-Project/tree/master/TableView "TableView")
 
