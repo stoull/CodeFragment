@@ -16,5 +16,7 @@
 
 * [Graphics Contexts Manager](https://github.com/stoull/Swift-Demo-Project/tree/master/Graphics%20Contexts%20Manager "Graphics Contexts Manager")
 
+* [CustomAnimationView](https://github.com/stoull/Swift-Demo-Project/tree/master/CustomAnimationView) 自定动画实现实例
+
 
 Also can use pieces of code in your App.
