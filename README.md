@@ -18,5 +18,7 @@
 
 * [CustomAnimationView](https://github.com/stoull/Swift-Demo-Project/tree/master/CustomAnimationView) 自定动画实现实例
 
+* [Bluetooth_Demo](https://github.com/stoull/Swift-Demo-Project/tree/master/CustomAnimationView) 蓝牙通信交互的实例
+
 
 Also can use pieces of code in your App.
