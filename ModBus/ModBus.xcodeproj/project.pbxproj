@@ -21,7 +21,6 @@
 		C913741427A390E800F5559C /* MGModbus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373FE27A390E700F5559C /* MGModbus.swift */; };
 		C913741527A390E800F5559C /* MGDataConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373FF27A390E700F5559C /* MGDataConvert.swift */; };
 		C913741627A390E800F5559C /* Modbus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740027A390E700F5559C /* Modbus.swift */; };
-		C913741727A390E800F5559C /* ModbusMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740127A390E700F5559C /* ModbusMode.swift */; };
 		C913741827A390E800F5559C /* MGModbusPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740227A390E700F5559C /* MGModbusPackage.swift */; };
 		C913741927A390E800F5559C /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740327A390E700F5559C /* PeripheralViewController.swift */; };
 		C913741A27A390E800F5559C /* MGBTLECentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740427A390E800F5559C /* MGBTLECentralManager.swift */; };
@@ -36,6 +35,12 @@
 		C913742827A392CF00F5559C /* CryptoSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FC27A390E700F5559C /* CryptoSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C913742A27A3933E00F5559C /* Bluetooth.md in Resources */ = {isa = PBXBuildFile; fileRef = C913742927A3933E00F5559C /* Bluetooth.md */; };
 		C913743427A39B0C00F5559C /* ModBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913743327A39B0C00F5559C /* ModBusTests.swift */; };
+		C975670727A3DA4D00B54A59 /* MGModPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */; };
+		C975670C27A3E10800B54A59 /* MGDAUParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670B27A3E10800B54A59 /* MGDAUParameter.swift */; };
+		C975670E27A3F1B600B54A59 /* MGDAUReadPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */; };
+		C975671027A3F27600B54A59 /* MGDAUWritePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670F27A3F27600B54A59 /* MGDAUWritePackage.swift */; };
+		C975671227A3F2B600B54A59 /* MGDAUPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975671127A3F2B600B54A59 /* MGDAUPackage.swift */; };
+		C9D4287C27A3F91A00306F1B /* MGModbusMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D4287B27A3F91900306F1B /* MGModbusMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +88,6 @@
 		C91373FE27A390E700F5559C /* MGModbus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGModbus.swift; sourceTree = "<group>"; };
 		C91373FF27A390E700F5559C /* MGDataConvert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGDataConvert.swift; sourceTree = "<group>"; };
 		C913740027A390E700F5559C /* Modbus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modbus.swift; sourceTree = "<group>"; };
-		C913740127A390E700F5559C /* ModbusMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModbusMode.swift; sourceTree = "<group>"; };
 		C913740227A390E700F5559C /* MGModbusPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGModbusPackage.swift; sourceTree = "<group>"; };
 		C913740327A390E700F5559C /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
 		C913740427A390E800F5559C /* MGBTLECentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBTLECentralManager.swift; sourceTree = "<group>"; };
@@ -95,11 +99,15 @@
 		C913740B27A390E800F5559C /* HSBluetoochHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBluetoochHelper.m; sourceTree = "<group>"; };
 		C913740C27A390E800F5559C /* ModBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		C913740D27A390E800F5559C /* PeripheralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeripheralViewController.xib; sourceTree = "<group>"; };
-		C913742027A3914B00F5559C /* Growatt数服协议6.2.7.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Growatt数服协议6.2.7.doc"; sourceTree = "<group>"; };
-		C913742127A3914B00F5559C /* APP WiFi热点配网模式通讯协议1.2.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "APP WiFi热点配网模式通讯协议1.2.docx"; sourceTree = "<group>"; };
 		C913742927A3933E00F5559C /* Bluetooth.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Bluetooth.md; sourceTree = "<group>"; };
 		C913743127A39B0C00F5559C /* ModBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C913743327A39B0C00F5559C /* ModBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModBusTests.swift; sourceTree = "<group>"; };
+		C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGModPackageManager.swift; sourceTree = "<group>"; };
+		C975670B27A3E10800B54A59 /* MGDAUParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUParameter.swift; sourceTree = "<group>"; };
+		C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUReadPackage.swift; sourceTree = "<group>"; };
+		C975670F27A3F27600B54A59 /* MGDAUWritePackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUWritePackage.swift; sourceTree = "<group>"; };
+		C975671127A3F2B600B54A59 /* MGDAUPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUPackage.swift; sourceTree = "<group>"; };
+		C9D4287B27A3F91900306F1B /* MGModbusMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGModbusMode.swift; sourceTree = "<group>"; };
 		D6C69CE03E27077EC748C477 /* Pods-ModBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModBus.release.xcconfig"; path = "Target Support Files/Pods-ModBus/Pods-ModBus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,8 +178,6 @@
 				C91373E427A38EE600F5559C /* SceneDelegate.swift */,
 				C913740627A390E800F5559C /* MGTransferService.swift */,
 				C913742927A3933E00F5559C /* Bluetooth.md */,
-				C913742127A3914B00F5559C /* APP WiFi热点配网模式通讯协议1.2.docx */,
-				C913742027A3914B00F5559C /* Growatt数服协议6.2.7.doc */,
 				C91373E627A38EE600F5559C /* ViewController.swift */,
 				C913740427A390E800F5559C /* MGBTLECentralManager.swift */,
 				C91373F627A390E700F5559C /* MGBTLEDevice.swift */,
@@ -203,10 +209,15 @@
 			isa = PBXGroup;
 			children = (
 				C91373FE27A390E700F5559C /* MGModbus.swift */,
-				C91373FF27A390E700F5559C /* MGDataConvert.swift */,
 				C913740027A390E700F5559C /* Modbus.swift */,
-				C913740127A390E700F5559C /* ModbusMode.swift */,
+				C91373FF27A390E700F5559C /* MGDataConvert.swift */,
+				C9D4287B27A3F91900306F1B /* MGModbusMode.swift */,
 				C913740227A390E700F5559C /* MGModbusPackage.swift */,
+				C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */,
+				C975670B27A3E10800B54A59 /* MGDAUParameter.swift */,
+				C975671127A3F2B600B54A59 /* MGDAUPackage.swift */,
+				C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */,
+				C975670F27A3F27600B54A59 /* MGDAUWritePackage.swift */,
 			);
 			path = ModBus;
 			sourceTree = "<group>";
@@ -387,15 +398,20 @@
 				C91373E727A38EE600F5559C /* ViewController.swift in Sources */,
 				C91373E327A38EE600F5559C /* AppDelegate.swift in Sources */,
 				C913741927A390E800F5559C /* PeripheralViewController.swift in Sources */,
-				C913741727A390E800F5559C /* ModbusMode.swift in Sources */,
+				C9D4287C27A3F91A00306F1B /* MGModbusMode.swift in Sources */,
+				C975670E27A3F1B600B54A59 /* MGDAUReadPackage.swift in Sources */,
+				C975670C27A3E10800B54A59 /* MGDAUParameter.swift in Sources */,
 				C913741827A390E800F5559C /* MGModbusPackage.swift in Sources */,
 				C913741627A390E800F5559C /* Modbus.swift in Sources */,
 				C913741427A390E800F5559C /* MGModbus.swift in Sources */,
+				C975670727A3DA4D00B54A59 /* MGModPackageManager.swift in Sources */,
 				C913741D27A390E800F5559C /* HSBluetoochManager.m in Sources */,
 				C913741B27A390E800F5559C /* CentralViewController.swift in Sources */,
 				C913741527A390E800F5559C /* MGDataConvert.swift in Sources */,
+				C975671227A3F2B600B54A59 /* MGDAUPackage.swift in Sources */,
 				C913741027A390E800F5559C /* BluetoothPeripheral.swift in Sources */,
 				C913741C27A390E800F5559C /* MGTransferService.swift in Sources */,
+				C975671027A3F27600B54A59 /* MGDAUWritePackage.swift in Sources */,
 				C91373E527A38EE600F5559C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

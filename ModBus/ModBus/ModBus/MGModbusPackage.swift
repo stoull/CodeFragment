@@ -24,32 +24,40 @@ class MGModbusPackage {
     /// 单元标识符 可以理解为设备地址
     var slaveAdress: UInt8 = 0x01
     
-    var command: Command = .unkonw
+    var command: ModCommand = .unkonw
     
-    convenience init(with characteristicData: Data) {
-        self.init()
-        let dataArray = Array(characteristicData)
-        guard dataArray.count > 8 else {return}
-        self.transactId = UInt16(dataArray[0]) + UInt16(dataArray[1])
-        self.protocolId = UInt16(dataArray[2]) + UInt16(dataArray[3])
-        let lenght = UInt16(dataArray[4]) + UInt16(dataArray[5])
-        self.length = lenght
-        self.slaveAdress = dataArray[6]
-        self.command = Command(rawValue: dataArray[7]) ?? .unkonw
-        self.validData = Data(dataArray[8...Int(length)])
-        self.functionType = .inquiry
-    }
+    var crc16Table: [UInt16] = []
+    
+//    convenience init(with characteristicData: Data) {
+//        self.init()
+//        let dataArray = Array(characteristicData)
+//        guard dataArray.count > 8 else {return}
+//        self.transactId = UInt16(dataArray[0]) + UInt16(dataArray[1])
+//        self.protocolId = UInt16(dataArray[2]) + UInt16(dataArray[3])
+//        let lenght = UInt16(dataArray[4]) + UInt16(dataArray[5])
+//        self.length = lenght
+//        self.slaveAdress = dataArray[6]
+//        self.command = Command(rawValue: dataArray[7]) ?? .unkonw
+//        self.validData = Data(dataArray[8...Int(length)])
+//        self.functionType = .read
+//    }
     
     convenience init(functionType: MGModbusCommandType, data: Data) {
-        self.init()
-        self.functionType = functionType
         self.validData = data
         self.length = UInt16(data.count)
+        self.init(functionType: functionType)
     }
     
+    init(functionType: MGModbusCommandType) {
+        self.functionType = functionType
+        
+        self.crc16Table = (0...255).map { byteValue in
+            crc16(for: byteValue, polynomial: 0x1021)
+        }
+    }
     
     var asData: Data {
-        let commandType: Command = functionType.modbusCommand
+        let commandType: ModCommand = functionType.modbusCommand
         
         if let validData = self.validData {
             let cmdData = createCommand(command: commandType, data: Array(validData))
@@ -72,7 +80,7 @@ class MGModbusPackage {
     }
     
     /// 创建modbus命令
-    private func createCommand(command: Command, data: [UInt8]) -> Data {
+    private func createCommand(command: ModCommand, data: [UInt8]) -> Data {
         var package = [UInt8]()
         
         if self.modMode == .tcp {
@@ -95,61 +103,76 @@ class MGModbusPackage {
         return newData
     }
     
+    
+    func generateDataPart(withCmd: MGModbusCommandType) {
+        
+    }
+    
     var describe: String {
         let desStr = "transactId: \(transactId) command:\(command) functionType:\(functionType) stringData:\(stringData)"
         return desStr
     }
-}
+    
+    // MARK: - CRC16
+    func getCRC16(dataBytes: [UInt8]) -> UInt16 {
+        return dataBytes.crc16()
+    }
 
-extension MGModbusPackage {
-    enum MGModbusCommandType {
-        /// 心跳
-        case heartBeat
-        /// 授权
-        case authorization
-        /// 订阅通知
-        case notification
-        ///
-        case inquiry
-        
-        var modbusCommand: Command {
-            var cmd:Command = .unkonw
-            switch self {
-            case .heartBeat:
-                cmd = .readDiscreteInputs
-            case .authorization:
-                cmd = .readCoilStatus
-            case .notification:
-                cmd = .data_log_read
-            case .inquiry:
-                cmd = .data_log_read
+    // MARK: 数据区循环异或秘钥
+    func XOR(data:[UInt8], key: String) {
+        var index: Int = 0
+        var result:[UInt8]=[]
+        let utf8Key = Array(key.utf8.map({UInt8($0)}))
+        for bt in data {
+            if index == key.count{
+                index = 0
             }
-            return cmd
+            result.append(bt^utf8Key[index])
+            index+=1
         }
     }
     
-    /// MARK: - 查询Wifi名称
-    static func inquiryDeviceWifiCommand() -> MGModbusPackage {
-        let paraNum = 0x75
-        let paraData = paraNum.data
-        let cmd = MGModbusPackage(functionType: .inquiry, data: paraData)
-        return cmd
+    // MARK: - CBC
+    func encryptCBC(data: Data) {
+        if let encrypted = try? Blowfish(key: "_growatt_datalog", iv: "", padding: .pkcs7) {
+            
+        }
     }
     
-    static func setWifiPwdCommand() -> MGModbusPackage {
-        let password:String = "Growatt88888"
-        let paraData = password.data(using: .utf8)!
-        let cmd = MGModbusPackage(functionType: .inquiry, data: paraData)
-        return cmd
+    // MARK: - xor加密
+    
+    func encrypt(str:String, key:BigUInt)->String
+    {
+        let value = BigUInt(str.data(using: String.Encoding.utf8)!)
+        let encrypt = key ^ value
+        return String(encrypt, radix: 16)
+    }
+
+    func decrypt(str:String, key:BigUInt)->String
+    {
+        let value = BigUInt(str, radix: 16)!
+        let decrypt = key ^ value
+        return String(data: decrypt.serialize(), encoding: String.Encoding.utf8)!
     }
     
-    /// MARK: - 心跳
-    static func heartbeatCommand() -> MGModbusPackage {
-        let dateformat = DateFormatter()
-        dateformat.dateFormat = "yyyy-MM-dd_HH:mm"
-        let datetimeString = dateformat.string(from: Date())
-        let datetimeData = datetimeString.data(using: .utf8)!
-        let cmd = MGModbusPackage(functionType: .heartBeat, data: datetimeData)
-        return cmd
+    
+    // MARK: - CRC 16
+    func crc16(for inputs: [UInt8], initialValue: UInt16 = 0x00) -> UInt16 {
+        inputs.reduce(initialValue) { remainder, byte in
+            let bigEndianInput = UInt16(byte) << 8
+            let index = (bigEndianInput ^ remainder) >> 8
+            return crc16Table[Int(index)] ^ (remainder << 8)
+        }
+    }
+    
+    func crc16(for input: UInt16, polynomial: UInt16) -> UInt16 {
+        let result = UInt16(input).bigEndian
+        return (0..<8).reduce(result) { result, _ in
+            let isMostSignificantBitOne = result & 0x8000 != 0
+            guard isMostSignificantBitOne else {
+                return result << 1
+            }
+            return (result << 1) ^ polynomial
+        }
     }
 }

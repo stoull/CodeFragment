@@ -248,7 +248,7 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
 //                return
 //        }
         
-        print("Discovered %s at %d", String(describing: peripheral.name), RSSI.intValue)
+        print("Discovered \(String(describing: peripheral.name)) withRSSI: \(RSSI.intValue)")
         
         print("xxxxx \(peripheral.maximumWriteValueLength(for: .withResponse))")
         
@@ -285,6 +285,11 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
      */
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Peripheral Connected")
+        
+        let maxWrite = peripheral.maximumWriteValueLength (for: .withResponse)
+        let maxWriteNo = peripheral.maximumWriteValueLength(for: .withoutResponse)
+        
+        print("maximumWriteValueLength: \(maxWrite) withoutResponse: \(maxWriteNo)")
         
         // Stop scanning
         centralManager.stopScan()

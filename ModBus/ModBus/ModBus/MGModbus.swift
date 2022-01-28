@@ -36,7 +36,7 @@ class MGModbus {
     }
     
     /// 创建modbus命令
-    func createCommand(command: Command, data: [UInt8]) -> Data {
+    func createCommand(command: ModCommand, data: [UInt8]) -> Data {
         var package = [UInt8]()
         
         // mbap in tcp mode

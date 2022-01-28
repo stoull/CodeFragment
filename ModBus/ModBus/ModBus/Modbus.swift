@@ -81,7 +81,7 @@ class Modbus {
     ///     - command: Modbus function.
     ///     - address: Data 16 bit address.
     ///     - data: For 1-4 commands number of readen elements, (5,6,15,16) data to write.
-    private func createCommand(command: Command, address: UInt16, data: [UInt8]) -> Data {
+    private func createCommand(command: ModCommand, address: UInt16, data: [UInt8]) -> Data {
         var package = [UInt8]()
         
         // mbap in tcp mode

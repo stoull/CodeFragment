@@ -22,7 +22,7 @@ class MGBTLEDevice: Equatable {
         if let lName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             self.name = lName
         } else {
-            self.name = ""
+            self.name = peripheral.name ?? ""
         }
         
         if let uuidArray = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {

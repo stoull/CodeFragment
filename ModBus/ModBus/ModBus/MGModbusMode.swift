@@ -1,8 +1,8 @@
 //
-//  Model.swift
-//  Bluetooth_Demo
+//  MGModbusMode.swift
+//  ModBus
 //
-//  Created by Hut on 2021/12/20.
+//  Created by Hut on 2022/1/28.
 //
 
 /// Describe the format of sended package
@@ -29,7 +29,7 @@ enum CrcMode {
  - Holding:     16 bit read/write unsigned register
  - Input:       16 bit only read unsigned register
  */
-enum Command: UInt8 {
+enum ModCommand: UInt8 {
     /** Read coil (one bit) register */
     case readCoilStatus = 0x01
     /** Read discrete (one bit) register */
@@ -50,15 +50,15 @@ enum Command: UInt8 {
     case presetMultipleRegisters = 0x10
     
     ///该功能码为完全透传命令：由手机app发送该命令码，数据采集器收到该命令码后，取出“透传数据区”，不作协议转换地透传给光伏设备；同时，对光伏设备返回的数据同样不作任何解析，直接当作“透传数据区”封装在MODBUS_TCP协议中响应给网络服务器。该命令并不局限于数据查询，还可以进行数据设置；也并不局限于对逆变器适用，对其它通过数据采集器与手机app相连的光伏设备同样适用，只要光伏设备能够解析出“透传数据区”中的内容，同时手机app也能解析出响应命令中“透传数据区”中的内容即可。
-    case viaTransmission = 0x17
+    case DAU_via = 0x17
     
     /// 该功能码是手机app与数据采集器之间的命令，它用于手机app对数据采集器的相关参数进行设置，一次可对单/多个参数进行设置。数据采集器在收到手机app的该功能码后，需判断命令的合法性，然后执行对应的设置操
-    case data_log_write = 0x18
+    case DAU_write = 0x18
     /// 该功能码是手机app与数据采集器之间的命令，它用于手机app对数据采集器的相关参数进行读取，一次可对单/多个参数进行读取。数据采集器在收到手机app的该功能码后，需判断命令的合法性，然后执行对应的设置操
-    case data_log_read = 0x19
+    case DAU_read = 0x19
     
     ///该功能码是网络服务器给采集器下发文件用于采集器或逆变器升级。目前仅WIFI-S/WIFI-X类型采集器采用此方式。流程逻辑：1、设置采集器为升级模式；2、查询采集器需要的升级文件类型；3、发送升级文件包：服务器以0x26开始文件传输-->完成后；按原有升级流程采集器.
-    case data_log_server = 0x26
+    case DAU_server = 0x26
     
     case unkonw
 }
