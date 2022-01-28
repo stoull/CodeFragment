@@ -1,0 +1,6 @@
+module Pods_ModBus {
+  umbrella header "Pods-ModBus-umbrella.h"
+
+  export *
+  module * { export * }
+}

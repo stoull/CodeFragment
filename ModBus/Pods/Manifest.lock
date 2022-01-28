@@ -1,0 +1,18 @@
+PODS:
+  - SPPermissions/Bluetooth (7.0.1):
+    - SPPermissions/Core
+  - SPPermissions/Core (7.0.1)
+
+DEPENDENCIES:
+  - SPPermissions/Bluetooth
+
+SPEC REPOS:
+  trunk:
+    - SPPermissions
+
+SPEC CHECKSUMS:
+  SPPermissions: 47102275aa242f64b9020db6b5d0fa0b66732c6f
+
+PODFILE CHECKSUM: 0118c3f0af1bbd274867145f8949f6200266dab5
+
+COCOAPODS: 1.11.2

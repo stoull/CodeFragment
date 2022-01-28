@@ -1,0 +1,696 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A04A4FEC37A368FB82C7379 /* libPods-ModBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A08CDAF088375F50AD2A9F5 /* libPods-ModBus.a */; };
+		C91373E327A38EE600F5559C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373E227A38EE600F5559C /* AppDelegate.swift */; };
+		C91373E527A38EE600F5559C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373E427A38EE600F5559C /* SceneDelegate.swift */; };
+		C91373E727A38EE600F5559C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373E627A38EE600F5559C /* ViewController.swift */; };
+		C91373EA27A38EE600F5559C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91373E827A38EE600F5559C /* Main.storyboard */; };
+		C91373EC27A38EE900F5559C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91373EB27A38EE900F5559C /* Assets.xcassets */; };
+		C91373EF27A38EE900F5559C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91373ED27A38EE900F5559C /* LaunchScreen.storyboard */; };
+		C913740E27A390E800F5559C /* MGBTLEDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373F627A390E700F5559C /* MGBTLEDevice.swift */; };
+		C913740F27A390E800F5559C /* MGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373F727A390E700F5559C /* MGError.swift */; };
+		C913741027A390E800F5559C /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373F827A390E700F5559C /* BluetoothPeripheral.swift */; };
+		C913741127A390E800F5559C /* CentralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91373F927A390E700F5559C /* CentralViewController.xib */; };
+		C913741427A390E800F5559C /* MGModbus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373FE27A390E700F5559C /* MGModbus.swift */; };
+		C913741527A390E800F5559C /* MGDataConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91373FF27A390E700F5559C /* MGDataConvert.swift */; };
+		C913741627A390E800F5559C /* Modbus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740027A390E700F5559C /* Modbus.swift */; };
+		C913741727A390E800F5559C /* ModbusMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740127A390E700F5559C /* ModbusMode.swift */; };
+		C913741827A390E800F5559C /* MGModbusPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740227A390E700F5559C /* MGModbusPackage.swift */; };
+		C913741927A390E800F5559C /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740327A390E700F5559C /* PeripheralViewController.swift */; };
+		C913741A27A390E800F5559C /* MGBTLECentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740427A390E800F5559C /* MGBTLECentralManager.swift */; };
+		C913741B27A390E800F5559C /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740527A390E800F5559C /* CentralViewController.swift */; };
+		C913741C27A390E800F5559C /* MGTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913740627A390E800F5559C /* MGTransferService.swift */; };
+		C913741D27A390E800F5559C /* HSBluetoochManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C913740A27A390E800F5559C /* HSBluetoochManager.m */; };
+		C913741E27A390E800F5559C /* HSBluetoochHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C913740B27A390E800F5559C /* HSBluetoochHelper.m */; };
+		C913741F27A390E800F5559C /* PeripheralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C913740D27A390E800F5559C /* PeripheralViewController.xib */; };
+		C913742427A392CE00F5559C /* BigInt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FB27A390E700F5559C /* BigInt.xcframework */; };
+		C913742527A392CE00F5559C /* BigInt.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FB27A390E700F5559C /* BigInt.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C913742727A392CF00F5559C /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FC27A390E700F5559C /* CryptoSwift.xcframework */; };
+		C913742827A392CF00F5559C /* CryptoSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FC27A390E700F5559C /* CryptoSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C913742A27A3933E00F5559C /* Bluetooth.md in Resources */ = {isa = PBXBuildFile; fileRef = C913742927A3933E00F5559C /* Bluetooth.md */; };
+		C913743427A39B0C00F5559C /* ModBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913743327A39B0C00F5559C /* ModBusTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C913743527A39B0C00F5559C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C91373D727A38EE600F5559C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C91373DE27A38EE600F5559C;
+			remoteInfo = ModBus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C913742627A392CE00F5559C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C913742827A392CF00F5559C /* CryptoSwift.xcframework in Embed Frameworks */,
+				C913742527A392CE00F5559C /* BigInt.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1A08CDAF088375F50AD2A9F5 /* libPods-ModBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE622755C2EDFE3A59F5C018 /* Pods-ModBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModBus.debug.xcconfig"; path = "Target Support Files/Pods-ModBus/Pods-ModBus.debug.xcconfig"; sourceTree = "<group>"; };
+		C91373DF27A38EE600F5559C /* ModBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91373E227A38EE600F5559C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C91373E427A38EE600F5559C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C91373E627A38EE600F5559C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C91373E927A38EE600F5559C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C91373EB27A38EE900F5559C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C91373EE27A38EE900F5559C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C91373F027A38EE900F5559C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C91373F627A390E700F5559C /* MGBTLEDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBTLEDevice.swift; sourceTree = "<group>"; };
+		C91373F727A390E700F5559C /* MGError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGError.swift; sourceTree = "<group>"; };
+		C91373F827A390E700F5559C /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
+		C91373F927A390E700F5559C /* CentralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CentralViewController.xib; sourceTree = "<group>"; };
+		C91373FB27A390E700F5559C /* BigInt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BigInt.xcframework; sourceTree = "<group>"; };
+		C91373FC27A390E700F5559C /* CryptoSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CryptoSwift.xcframework; sourceTree = "<group>"; };
+		C91373FE27A390E700F5559C /* MGModbus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGModbus.swift; sourceTree = "<group>"; };
+		C91373FF27A390E700F5559C /* MGDataConvert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGDataConvert.swift; sourceTree = "<group>"; };
+		C913740027A390E700F5559C /* Modbus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modbus.swift; sourceTree = "<group>"; };
+		C913740127A390E700F5559C /* ModbusMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModbusMode.swift; sourceTree = "<group>"; };
+		C913740227A390E700F5559C /* MGModbusPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGModbusPackage.swift; sourceTree = "<group>"; };
+		C913740327A390E700F5559C /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
+		C913740427A390E800F5559C /* MGBTLECentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBTLECentralManager.swift; sourceTree = "<group>"; };
+		C913740527A390E800F5559C /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
+		C913740627A390E800F5559C /* MGTransferService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGTransferService.swift; sourceTree = "<group>"; };
+		C913740827A390E800F5559C /* HSBluetoochManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBluetoochManager.h; sourceTree = "<group>"; };
+		C913740927A390E800F5559C /* HSBluetoochHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBluetoochHelper.h; sourceTree = "<group>"; };
+		C913740A27A390E800F5559C /* HSBluetoochManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBluetoochManager.m; sourceTree = "<group>"; };
+		C913740B27A390E800F5559C /* HSBluetoochHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBluetoochHelper.m; sourceTree = "<group>"; };
+		C913740C27A390E800F5559C /* ModBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModBus-Bridging-Header.h"; sourceTree = "<group>"; };
+		C913740D27A390E800F5559C /* PeripheralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeripheralViewController.xib; sourceTree = "<group>"; };
+		C913742027A3914B00F5559C /* Growatt数服协议6.2.7.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Growatt数服协议6.2.7.doc"; sourceTree = "<group>"; };
+		C913742127A3914B00F5559C /* APP WiFi热点配网模式通讯协议1.2.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "APP WiFi热点配网模式通讯协议1.2.docx"; sourceTree = "<group>"; };
+		C913742927A3933E00F5559C /* Bluetooth.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Bluetooth.md; sourceTree = "<group>"; };
+		C913743127A39B0C00F5559C /* ModBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C913743327A39B0C00F5559C /* ModBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModBusTests.swift; sourceTree = "<group>"; };
+		D6C69CE03E27077EC748C477 /* Pods-ModBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModBus.release.xcconfig"; path = "Target Support Files/Pods-ModBus/Pods-ModBus.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C91373DC27A38EE600F5559C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C913742427A392CE00F5559C /* BigInt.xcframework in Frameworks */,
+				4A04A4FEC37A368FB82C7379 /* libPods-ModBus.a in Frameworks */,
+				C913742727A392CF00F5559C /* CryptoSwift.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C913742E27A39B0C00F5559C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		379567BB50299A3D8D2F19ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A08CDAF088375F50AD2A9F5 /* libPods-ModBus.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F2B4447F13EBEEA46D02F76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE622755C2EDFE3A59F5C018 /* Pods-ModBus.debug.xcconfig */,
+				D6C69CE03E27077EC748C477 /* Pods-ModBus.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C91373D627A38EE600F5559C = {
+			isa = PBXGroup;
+			children = (
+				C91373E127A38EE600F5559C /* ModBus */,
+				C913743227A39B0C00F5559C /* ModBusTests */,
+				C91373E027A38EE600F5559C /* Products */,
+				6F2B4447F13EBEEA46D02F76 /* Pods */,
+				379567BB50299A3D8D2F19ED /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C91373E027A38EE600F5559C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C91373DF27A38EE600F5559C /* ModBus.app */,
+				C913743127A39B0C00F5559C /* ModBusTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C91373E127A38EE600F5559C /* ModBus */ = {
+			isa = PBXGroup;
+			children = (
+				C913740727A390E800F5559C /* OldMod */,
+				C91373FD27A390E700F5559C /* ModBus */,
+				C91373E227A38EE600F5559C /* AppDelegate.swift */,
+				C91373E427A38EE600F5559C /* SceneDelegate.swift */,
+				C913740627A390E800F5559C /* MGTransferService.swift */,
+				C913742927A3933E00F5559C /* Bluetooth.md */,
+				C913742127A3914B00F5559C /* APP WiFi热点配网模式通讯协议1.2.docx */,
+				C913742027A3914B00F5559C /* Growatt数服协议6.2.7.doc */,
+				C91373E627A38EE600F5559C /* ViewController.swift */,
+				C913740427A390E800F5559C /* MGBTLECentralManager.swift */,
+				C91373F627A390E700F5559C /* MGBTLEDevice.swift */,
+				C91373F727A390E700F5559C /* MGError.swift */,
+				C91373F827A390E700F5559C /* BluetoothPeripheral.swift */,
+				C913740527A390E800F5559C /* CentralViewController.swift */,
+				C91373F927A390E700F5559C /* CentralViewController.xib */,
+				C913740327A390E700F5559C /* PeripheralViewController.swift */,
+				C913740D27A390E800F5559C /* PeripheralViewController.xib */,
+				C91373E827A38EE600F5559C /* Main.storyboard */,
+				C91373EB27A38EE900F5559C /* Assets.xcassets */,
+				C91373ED27A38EE900F5559C /* LaunchScreen.storyboard */,
+				C91373FA27A390E700F5559C /* Frameworks */,
+				C91373F027A38EE900F5559C /* Info.plist */,
+			);
+			path = ModBus;
+			sourceTree = "<group>";
+		};
+		C91373FA27A390E700F5559C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C91373FB27A390E700F5559C /* BigInt.xcframework */,
+				C91373FC27A390E700F5559C /* CryptoSwift.xcframework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		C91373FD27A390E700F5559C /* ModBus */ = {
+			isa = PBXGroup;
+			children = (
+				C91373FE27A390E700F5559C /* MGModbus.swift */,
+				C91373FF27A390E700F5559C /* MGDataConvert.swift */,
+				C913740027A390E700F5559C /* Modbus.swift */,
+				C913740127A390E700F5559C /* ModbusMode.swift */,
+				C913740227A390E700F5559C /* MGModbusPackage.swift */,
+			);
+			path = ModBus;
+			sourceTree = "<group>";
+		};
+		C913740727A390E800F5559C /* OldMod */ = {
+			isa = PBXGroup;
+			children = (
+				C913740827A390E800F5559C /* HSBluetoochManager.h */,
+				C913740927A390E800F5559C /* HSBluetoochHelper.h */,
+				C913740A27A390E800F5559C /* HSBluetoochManager.m */,
+				C913740B27A390E800F5559C /* HSBluetoochHelper.m */,
+				C913740C27A390E800F5559C /* ModBus-Bridging-Header.h */,
+			);
+			path = OldMod;
+			sourceTree = "<group>";
+		};
+		C913743227A39B0C00F5559C /* ModBusTests */ = {
+			isa = PBXGroup;
+			children = (
+				C913743327A39B0C00F5559C /* ModBusTests.swift */,
+			);
+			path = ModBusTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C91373DE27A38EE600F5559C /* ModBus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C91373F327A38EE900F5559C /* Build configuration list for PBXNativeTarget "ModBus" */;
+			buildPhases = (
+				6186B9D8F1C0EE691423DFA4 /* [CP] Check Pods Manifest.lock */,
+				C91373DB27A38EE600F5559C /* Sources */,
+				C91373DC27A38EE600F5559C /* Frameworks */,
+				C91373DD27A38EE600F5559C /* Resources */,
+				2E446005DC38D4B1DB44167B /* [CP] Copy Pods Resources */,
+				C913742627A392CE00F5559C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModBus;
+			productName = ModBus;
+			productReference = C91373DF27A38EE600F5559C /* ModBus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C913743027A39B0C00F5559C /* ModBusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C913743727A39B0C00F5559C /* Build configuration list for PBXNativeTarget "ModBusTests" */;
+			buildPhases = (
+				C913742D27A39B0C00F5559C /* Sources */,
+				C913742E27A39B0C00F5559C /* Frameworks */,
+				C913742F27A39B0C00F5559C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C913743627A39B0C00F5559C /* PBXTargetDependency */,
+			);
+			name = ModBusTests;
+			productName = ModBusTests;
+			productReference = C913743127A39B0C00F5559C /* ModBusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C91373D727A38EE600F5559C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					C91373DE27A38EE600F5559C = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					C913743027A39B0C00F5559C = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = C91373DE27A38EE600F5559C;
+					};
+				};
+			};
+			buildConfigurationList = C91373DA27A38EE600F5559C /* Build configuration list for PBXProject "ModBus" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C91373D627A38EE600F5559C;
+			productRefGroup = C91373E027A38EE600F5559C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C91373DE27A38EE600F5559C /* ModBus */,
+				C913743027A39B0C00F5559C /* ModBusTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C91373DD27A38EE600F5559C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C91373EF27A38EE900F5559C /* LaunchScreen.storyboard in Resources */,
+				C91373EC27A38EE900F5559C /* Assets.xcassets in Resources */,
+				C913741127A390E800F5559C /* CentralViewController.xib in Resources */,
+				C91373EA27A38EE600F5559C /* Main.storyboard in Resources */,
+				C913741F27A390E800F5559C /* PeripheralViewController.xib in Resources */,
+				C913742A27A3933E00F5559C /* Bluetooth.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C913742F27A39B0C00F5559C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E446005DC38D4B1DB44167B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModBus/Pods-ModBus-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModBus/Pods-ModBus-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModBus/Pods-ModBus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6186B9D8F1C0EE691423DFA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ModBus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C91373DB27A38EE600F5559C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C913741A27A390E800F5559C /* MGBTLECentralManager.swift in Sources */,
+				C913740F27A390E800F5559C /* MGError.swift in Sources */,
+				C913740E27A390E800F5559C /* MGBTLEDevice.swift in Sources */,
+				C913741E27A390E800F5559C /* HSBluetoochHelper.m in Sources */,
+				C91373E727A38EE600F5559C /* ViewController.swift in Sources */,
+				C91373E327A38EE600F5559C /* AppDelegate.swift in Sources */,
+				C913741927A390E800F5559C /* PeripheralViewController.swift in Sources */,
+				C913741727A390E800F5559C /* ModbusMode.swift in Sources */,
+				C913741827A390E800F5559C /* MGModbusPackage.swift in Sources */,
+				C913741627A390E800F5559C /* Modbus.swift in Sources */,
+				C913741427A390E800F5559C /* MGModbus.swift in Sources */,
+				C913741D27A390E800F5559C /* HSBluetoochManager.m in Sources */,
+				C913741B27A390E800F5559C /* CentralViewController.swift in Sources */,
+				C913741527A390E800F5559C /* MGDataConvert.swift in Sources */,
+				C913741027A390E800F5559C /* BluetoothPeripheral.swift in Sources */,
+				C913741C27A390E800F5559C /* MGTransferService.swift in Sources */,
+				C91373E527A38EE600F5559C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C913742D27A39B0C00F5559C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C913743427A39B0C00F5559C /* ModBusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C913743627A39B0C00F5559C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C91373DE27A38EE600F5559C /* ModBus */;
+			targetProxy = C913743527A39B0C00F5559C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C91373E827A38EE600F5559C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91373E927A38EE600F5559C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C91373ED27A38EE900F5559C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91373EE27A38EE900F5559C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C91373F127A38EE900F5559C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C91373F227A38EE900F5559C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C91373F427A38EE900F5559C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE622755C2EDFE3A59F5C018 /* Pods-ModBus.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFM3SPMA69;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ModBus/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growatt.hut.test.ModBus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ModBus/OldMod/ModBus-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C91373F527A38EE900F5559C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6C69CE03E27077EC748C477 /* Pods-ModBus.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFM3SPMA69;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ModBus/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growatt.hut.test.ModBus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ModBus/OldMod/ModBus-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C913743827A39B0C00F5559C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFM3SPMA69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growatt.hut.test.ModBusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModBus.app/ModBus";
+			};
+			name = Debug;
+		};
+		C913743927A39B0C00F5559C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFM3SPMA69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growatt.hut.test.ModBusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModBus.app/ModBus";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C91373DA27A38EE600F5559C /* Build configuration list for PBXProject "ModBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91373F127A38EE900F5559C /* Debug */,
+				C91373F227A38EE900F5559C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C91373F327A38EE900F5559C /* Build configuration list for PBXNativeTarget "ModBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91373F427A38EE900F5559C /* Debug */,
+				C91373F527A38EE900F5559C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C913743727A39B0C00F5559C /* Build configuration list for PBXNativeTarget "ModBusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C913743827A39B0C00F5559C /* Debug */,
+				C913743927A39B0C00F5559C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C91373D727A38EE600F5559C /* Project object */;
+}
