@@ -11,10 +11,7 @@ import BigInt
 
 class MGModbusPackage {
     var modMode: ModbusMode = .tcp
-    var functionType: MGModbusCommandType = .heartBeat
-    var validData: Data?
     
-
     /// 事务处理标识 仅tcp mode下有
     var transactId: UInt16 = 0x00
     /// 协议标识符 00 00表示ModbusTCP协议 仅tcp mode下有
@@ -24,47 +21,48 @@ class MGModbusPackage {
     /// 单元标识符 可以理解为设备地址
     var slaveAdress: UInt8 = 0x01
     
+    /// 对应的 ‘功能码’
     var command: ModCommand = .unkonw
+    
+    /// 对应的数据区的自定 ‘参数编号’
+    var validData: Data?
     
     var crc16Table: [UInt16] = []
     
-//    convenience init(with characteristicData: Data) {
-//        self.init()
-//        let dataArray = Array(characteristicData)
-//        guard dataArray.count > 8 else {return}
-//        self.transactId = UInt16(dataArray[0]) + UInt16(dataArray[1])
-//        self.protocolId = UInt16(dataArray[2]) + UInt16(dataArray[3])
-//        let lenght = UInt16(dataArray[4]) + UInt16(dataArray[5])
-//        self.length = lenght
-//        self.slaveAdress = dataArray[6]
-//        self.command = Command(rawValue: dataArray[7]) ?? .unkonw
-//        self.validData = Data(dataArray[8...Int(length)])
-//        self.functionType = .read
-//    }
-    
-    convenience init(functionType: MGModbusCommandType, data: Data) {
-        self.validData = data
-        self.length = UInt16(data.count)
-        self.init(functionType: functionType)
-    }
-    
-    init(functionType: MGModbusCommandType) {
-        self.functionType = functionType
+    init(command: ModCommand, validData: Data, transactId:UInt16 = 0x00) {
+        self.command = command
+        self.transactId = transactId
+        
+        self.validData = validData
+        self.length = UInt16(validData.count)
         
         self.crc16Table = (0...255).map { byteValue in
             crc16(for: byteValue, polynomial: 0x1021)
         }
     }
     
-    var asData: Data {
-        let commandType: ModCommand = functionType.modbusCommand
+    init(modbusPackage data: Data) throws {
+        let dataArray = Array(data)
+        guard dataArray.count > 8 else {
+            throw MGModBusError(type: .dataError)
+        }
         
+        self.transactId = Data(dataArray[0...1]).uint16
+        self.protocolId = Data(dataArray[2...3]).uint16
+        let lenght = Data(dataArray[4...5]).uint16
+        self.length = lenght
+        self.slaveAdress = dataArray[6]
+        self.command = ModCommand(rawValue: dataArray[7]) ?? .unkonw
+        self.validData = Data(dataArray[8...Int(length-1)])
+    }
+    
+    var asData: Data {
         if let validData = self.validData {
-            let cmdData = createCommand(command: commandType, data: Array(validData))
+            let cmdData = createCommand(command: self.command, data: Array(validData))
 //            print("as cmd data: \(cmdData.hexEncodedString())")
             return cmdData
         } else {
-            let cmdData = createCommand(command: commandType, data: Array())
+            let cmdData = createCommand(command: self.command, data: Array())
 //            print("as cmd data: \(cmdData.hexEncodedString())")
             return cmdData
         }
@@ -109,7 +107,7 @@ class MGModbusPackage {
     }
     
     var describe: String {
-        let desStr = "transactId: \(transactId) command:\(command) functionType:\(functionType) stringData:\(stringData)"
+        let desStr = "transactId: \(transactId) command:\(command) stringData:\(stringData)"
         return desStr
     }
     
