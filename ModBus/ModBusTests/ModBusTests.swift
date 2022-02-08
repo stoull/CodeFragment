@@ -30,9 +30,6 @@ class ModBusTests: XCTestCase {
         let len = [UInt8(lenght >> 8), UInt8(lenght & 0xFF)]
         
         print("3: \(lenght) lenBin: \(lenBin) len: \(len)")
-        
-        
-        
     }
 
     func testPerformanceExample() throws {

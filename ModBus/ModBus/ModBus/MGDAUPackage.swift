@@ -16,7 +16,7 @@ struct MGModBusError: Error {
         self.init(type: type, code: type.rawValue, message: type.message)
     }
     
-    init(type: MGModBusStatusType, code: Int, message: String) {
+    init(type: MGModBusStatusType, code: UInt8, message: String) {
         self.type = type
         self.code = code
         self.message = message
@@ -87,29 +87,14 @@ extension MGModbusPackage {
             return cmd
         }
     }
-    
-    /// MARK: - 查询Wifi名称
-    static func inquiryDeviceWifiCommand() -> MGModbusPackage {
-        let paraNum = 0x75
-        let paraData = paraNum.data
-        let cmd = MGModbusPackage(functionType: .read, data: paraData)
-        return cmd
-    }
-    
-    static func setWifiPwdCommand() -> MGModbusPackage {
-        let password:String = "Growatt88888"
-        let paraData = password.data(using: .utf8)!
-        let cmd = MGModbusPackage(functionType: .read, data: paraData)
-        return cmd
-    }
-    
+
     /// MARK: - 心跳
     static func heartbeatCommand() -> MGModbusPackage {
         let dateformat = DateFormatter()
         dateformat.dateFormat = "yyyy-MM-dd_HH:mm"
         let datetimeString = dateformat.string(from: Date())
         let datetimeData = datetimeString.data(using: .utf8)!
-        let cmd = MGModbusPackage(functionType: .heartBeat, data: datetimeData)
+        let cmd = MGModbusPackage(command: .readCoilStatus, validData: datetimeData)
         return cmd
     }
 }

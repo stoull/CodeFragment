@@ -24,6 +24,8 @@ class CentralViewController: UIViewController {
     var mgModbus = MGModbus()
     
     var bluetoothHelper: HSBluetoochManager!
+    
+    let deviceSerialNumber: String = "D0BSB19003"
 
     convenience init() {
         self.init(nibName: "CentralViewController", bundle: nil)
@@ -59,6 +61,40 @@ class CentralViewController: UIViewController {
         } else {
             
         }
+        
+        /// 测试-0x19参数读取操作
+        let dataArray: [UInt8] = [1,13,1,5,0,35,1,19,9,9,9,9,9,9,9,9,9,9,0,4,0,0,19,0,1,6,0,18,0,1,7,0,17,0,1,8,0,16,0,1,9]
+        let data = Data(dataArray)
+        do {
+            let readPackage = try MGDAUReadPackage(responseData: data)
+            print("测试0x19参数读取操作: ")
+            var index = 1
+            for (key,value) in readPackage.params {
+                print("参数 \(index): \(key.name) 编号: \(key.number)")
+                if let v = value {
+                    print("字节长度：\(v.count), 值：\(v.uint8)")
+                }
+                index += 1
+            }
+        } catch let error {
+            print("测试0x19参数读取操作错误: \(error)")
+        }
+        
+        
+        /// 测试-0x18参数设置操作
+        let dataArray_18: [UInt8] = [1,13,1,5,0,15,1,19,9,9,9,9,9,9,9,9,9,9,0,2,0]
+        let data_18 = Data(dataArray_18)
+        do {
+            let readPackage = try MGDAUWritePackage(responseData: data_18)
+            if readPackage.code == .successs {
+                print("测试0x18参数设置操作 成功")
+            } else {
+                print("测试0x18参数设置操作 失败")
+            }
+        } catch let error {
+            print("测试0x18参数设置操作 失败 \(error)")
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,13 +104,22 @@ class CentralViewController: UIViewController {
 
     // MARK: - Helper Methods
     @IBAction func sendCmd(_ sender: Any) {
-        let wifiCmd = MGModbusPackage.inquiryDeviceWifiCommand().asData
-        btleManager.writeData(with: wifiCmd)
+        /// 测试-查询wifi信息
+        let wifiCmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifiList]).asData
+        
+        print("wifiCmd Data: \(wifiCmd.bytes)")
+//        btleManager.writeData(with: wifiCmd)
     }
-    
+
     @IBAction func setPwd(_ sender: Any) {
-        let wifiCmd = MGModbusPackage.setWifiPwdCommand().asData
-        btleManager.writeData(with: wifiCmd)
+        let wifiName = "Growatt88888".data(using: .utf8)!
+        let wifiPwd = "wifipassword".data(using: .utf8)!
+        let setWifiCmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID: wifiName, .wifi_password: wifiPwd]).asData
+        
+        /// 测试-设置wifi信息参数
+        print("set wifiCmd Data: \(setWifiCmd.bytes)")
+        
+//        btleManager.writeData(with: setWifiCmd)
     }
     
     @IBAction func searchButtonDidClick(_ sender: UIButton) {

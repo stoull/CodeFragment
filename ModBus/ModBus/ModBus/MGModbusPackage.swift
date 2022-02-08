@@ -46,14 +46,14 @@ class MGModbusPackage {
         guard dataArray.count > 8 else {
             throw MGModBusError(type: .dataError)
         }
-        
+//        let result = (UInt16(bytes[1]) << 8) + UInt16(bytes[0])
         self.transactId = Data(dataArray[0...1]).uint16
         self.protocolId = Data(dataArray[2...3]).uint16
         let lenght = Data(dataArray[4...5]).uint16
         self.length = lenght
         self.slaveAdress = dataArray[6]
         self.command = ModCommand(rawValue: dataArray[7]) ?? .unkonw
-        self.validData = Data(dataArray[8...Int(length-1)])
+        self.validData = Data(dataArray[8...Int(8+length-3)])
     }
     
     var asData: Data {

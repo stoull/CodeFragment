@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// 读写属性
 enum MGDAURWAttributes {
@@ -17,6 +18,8 @@ enum MGDAURWAttributes {
 
 /// 采集器参数 详见 Growatt数服协议7.0.0.doc
 enum MGDAUParameter {
+    case unknow
+    
     /// 数据采集器向网络服务器传送数据的间隔时间，单位为分钟
     case dataInterval
     /// 数据采集器序列号
@@ -141,10 +144,58 @@ enum MGDAUParameter {
         case .wifiList:
             sNum = 75
             sName = "get router name"
+        case .unknow:
+            sNum = 255
+            sName = "unknow"
         }
         
         return (sNum, sName, sRW)
     }
     
-    
+    /// 将参数编号转成对应的model
+    static func from(parameterNumber: UInt16) -> MGDAUParameter {
+        var para: MGDAUParameter = .unknow
+        if parameterNumber == 4 {
+            para = .dataInterval
+        } else if parameterNumber == 8 {
+            para = .dataloggerSN
+        } else if parameterNumber == 13 {
+           para = .dataloggerType
+        } else if parameterNumber == 14 {
+           para = .ip
+        } else if parameterNumber == 16 {
+           para = .host_ip
+        } else if parameterNumber == 17 {
+           para = .mac
+        } else if parameterNumber == 18 {
+           para = .host_port
+        } else if parameterNumber == 19 {
+           para = .host_domain
+        } else if parameterNumber == 21 {
+           para = .firmwareVersion
+        } else if parameterNumber == 22 {
+           para = .hardwareVersion
+        } else if parameterNumber == 25 {
+           para = .subnetMask
+        } else if parameterNumber == 26 {
+           para = .defaultGateway
+        } else if parameterNumber == 31 {
+           para = .systemTime
+        } else if parameterNumber == 32 {
+           para = .dataloggerRestart
+        } else if parameterNumber == 56 {
+           para = .wifi_SSID
+        } else if parameterNumber == 57 {
+           para = .wifi_password
+        } else if parameterNumber == 60 {
+           para = .wifi_lineStatus
+        } else if parameterNumber == 65 {
+           para = .fotaFileType
+        } else if parameterNumber == 71 {
+           para = .DHCP
+        } else if parameterNumber == 75 {
+           para = .wifiList
+        }
+        return para
+    }
 }

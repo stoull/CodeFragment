@@ -20,14 +20,14 @@ extension Data {
     var uint16: UInt16 {
         get {
             let i16array = self.withUnsafeBytes { $0.load(as: UInt16.self) }
-            return i16array
+            return i16array.bigEndian
         }
     }
     
     var uint32: UInt32 {
         get {
             let i32array = self.withUnsafeBytes { $0.load(as: UInt32.self) }
-            return i32array
+            return i32array.bigEndian
         }
     }
     
