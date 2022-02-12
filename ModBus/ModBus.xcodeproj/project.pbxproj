@@ -35,6 +35,9 @@
 		C913742827A392CF00F5559C /* CryptoSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C91373FC27A390E700F5559C /* CryptoSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C913742A27A3933E00F5559C /* Bluetooth.md in Resources */ = {isa = PBXBuildFile; fileRef = C913742927A3933E00F5559C /* Bluetooth.md */; };
 		C913743427A39B0C00F5559C /* ModBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913743327A39B0C00F5559C /* ModBusTests.swift */; };
+		C942D9CF27B63968008BFFE9 /* MGDAUPenetratePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942D9CE27B63968008BFFE9 /* MGDAUPenetratePackage.swift */; };
+		C942D9D127B63EBF008BFFE9 /* MGPenetrateModPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942D9D027B63EBF008BFFE9 /* MGPenetrateModPackage.swift */; };
+		C942D9D427B649D0008BFFE9 /* wifiToPvDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C942D9D227B649D0008BFFE9 /* wifiToPvDataModel.m */; };
 		C975670727A3DA4D00B54A59 /* MGModPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */; };
 		C975670C27A3E10800B54A59 /* MGDAUParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670B27A3E10800B54A59 /* MGDAUParameter.swift */; };
 		C975670E27A3F1B600B54A59 /* MGDAUReadPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */; };
@@ -102,6 +105,10 @@
 		C913742927A3933E00F5559C /* Bluetooth.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Bluetooth.md; sourceTree = "<group>"; };
 		C913743127A39B0C00F5559C /* ModBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C913743327A39B0C00F5559C /* ModBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModBusTests.swift; sourceTree = "<group>"; };
+		C942D9CE27B63968008BFFE9 /* MGDAUPenetratePackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUPenetratePackage.swift; sourceTree = "<group>"; };
+		C942D9D027B63EBF008BFFE9 /* MGPenetrateModPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGPenetrateModPackage.swift; sourceTree = "<group>"; };
+		C942D9D227B649D0008BFFE9 /* wifiToPvDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wifiToPvDataModel.m; sourceTree = "<group>"; };
+		C942D9D327B649D0008BFFE9 /* wifiToPvDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wifiToPvDataModel.h; sourceTree = "<group>"; };
 		C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGModPackageManager.swift; sourceTree = "<group>"; };
 		C975670B27A3E10800B54A59 /* MGDAUParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUParameter.swift; sourceTree = "<group>"; };
 		C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGDAUReadPackage.swift; sourceTree = "<group>"; };
@@ -218,6 +225,8 @@
 				C975671127A3F2B600B54A59 /* MGDAUPackage.swift */,
 				C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */,
 				C975670F27A3F27600B54A59 /* MGDAUWritePackage.swift */,
+				C942D9CE27B63968008BFFE9 /* MGDAUPenetratePackage.swift */,
+				C942D9D027B63EBF008BFFE9 /* MGPenetrateModPackage.swift */,
 			);
 			path = ModBus;
 			sourceTree = "<group>";
@@ -225,11 +234,13 @@
 		C913740727A390E800F5559C /* OldMod */ = {
 			isa = PBXGroup;
 			children = (
-				C913740827A390E800F5559C /* HSBluetoochManager.h */,
-				C913740927A390E800F5559C /* HSBluetoochHelper.h */,
-				C913740A27A390E800F5559C /* HSBluetoochManager.m */,
-				C913740B27A390E800F5559C /* HSBluetoochHelper.m */,
 				C913740C27A390E800F5559C /* ModBus-Bridging-Header.h */,
+				C913740827A390E800F5559C /* HSBluetoochManager.h */,
+				C913740A27A390E800F5559C /* HSBluetoochManager.m */,
+				C913740927A390E800F5559C /* HSBluetoochHelper.h */,
+				C913740B27A390E800F5559C /* HSBluetoochHelper.m */,
+				C942D9D327B649D0008BFFE9 /* wifiToPvDataModel.h */,
+				C942D9D227B649D0008BFFE9 /* wifiToPvDataModel.m */,
 			);
 			path = OldMod;
 			sourceTree = "<group>";
@@ -397,15 +408,18 @@
 				C913741E27A390E800F5559C /* HSBluetoochHelper.m in Sources */,
 				C91373E727A38EE600F5559C /* ViewController.swift in Sources */,
 				C91373E327A38EE600F5559C /* AppDelegate.swift in Sources */,
+				C942D9D127B63EBF008BFFE9 /* MGPenetrateModPackage.swift in Sources */,
 				C913741927A390E800F5559C /* PeripheralViewController.swift in Sources */,
 				C9D4287C27A3F91A00306F1B /* MGModbusMode.swift in Sources */,
 				C975670E27A3F1B600B54A59 /* MGDAUReadPackage.swift in Sources */,
 				C975670C27A3E10800B54A59 /* MGDAUParameter.swift in Sources */,
 				C913741827A390E800F5559C /* MGModbusPackage.swift in Sources */,
+				C942D9CF27B63968008BFFE9 /* MGDAUPenetratePackage.swift in Sources */,
 				C913741627A390E800F5559C /* Modbus.swift in Sources */,
 				C913741427A390E800F5559C /* MGModbus.swift in Sources */,
 				C975670727A3DA4D00B54A59 /* MGModPackageManager.swift in Sources */,
 				C913741D27A390E800F5559C /* HSBluetoochManager.m in Sources */,
+				C942D9D427B649D0008BFFE9 /* wifiToPvDataModel.m in Sources */,
 				C913741B27A390E800F5559C /* CentralViewController.swift in Sources */,
 				C913741527A390E800F5559C /* MGDataConvert.swift in Sources */,
 				C975671227A3F2B600B54A59 /* MGDAUPackage.swift in Sources */,

@@ -99,6 +99,7 @@ class MGDAUReadPackage: MGModbusPackage {
         }
     }
     
+    /// 直接使用数据区Data发送命令
     init(validData: Data, transactId: UInt16=0x00) {
         super.init(command: .DAU_read, validData: validData, transactId: transactId)
     }

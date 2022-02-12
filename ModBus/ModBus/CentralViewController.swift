@@ -67,6 +67,7 @@ class CentralViewController: UIViewController {
         let data = Data(dataArray)
         do {
             let readPackage = try MGDAUReadPackage(responseData: data)
+            let rData = readPackage.asData
             print("测试0x19参数读取操作: ")
             var index = 1
             for (key,value) in readPackage.params {
@@ -86,6 +87,7 @@ class CentralViewController: UIViewController {
         let data_18 = Data(dataArray_18)
         do {
             let readPackage = try MGDAUWritePackage(responseData: data_18)
+            let rData = readPackage.asData
             if readPackage.code == .successs {
                 print("测试0x18参数设置操作 成功")
             } else {
@@ -94,7 +96,17 @@ class CentralViewController: UIViewController {
         } catch let error {
             print("测试0x18参数设置操作 失败 \(error)")
         }
-
+        
+        print("测试-0x17参数设置操作")
+        /// 测试-0x17参数设置操作
+        /// 01 03 00 17 00 05 75 CC
+        let dataArray_17: [UInt8] = [1,3,00,23,0,5,117] // CRC: 75CC
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_holding, startAddress: UInt16(23), count: UInt16(5), setData: [UInt16(117)])
+        let pdata = rutPackage.asData()
+        for i in 0...pdata.count-1 {
+            print(String(format:"%02X", pdata[i]))
+        }
+        print("package CRC: \(rutPackage.CRC)")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

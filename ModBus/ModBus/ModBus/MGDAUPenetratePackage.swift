@@ -1,23 +1,19 @@
 //
-//  MGDAUWritePackage.swift
+//  MGDAUPenetratePackage.swift
 //  ModBus
 //
-//  Created by Hut on 2022/1/28.
+//  Created by Hut on 2022/2/11.
 //
 
 import Foundation
 
-/// 命令码0x18 对应的modbus数据包
-class MGDAUWritePackage: MGModbusPackage {
+/// 命令码0x17 传给采集器的 对应的透传modbus数据包
+class MGDAUPenetratePackage: MGModbusPackage {
     var dauSerial: String = ""
-    /// 参数编号个数
-    var parasCount: Int = 1
-    /// 状态码
-    var code: MGModBusStatusType = .unknow
-    /// 获取到有效数据
-    var params: [MGDAUParameter: Data] = [:]
+    var penetrateDataLenth: UInt16 = 0
+    var penetrateData: Data?
     
-    convenience init(dauSerial: String, parameters: [MGDAUParameter: Data]){
+    convenience init(dauSerial: String, penetratePackage pPackage: MGPenetrateModPackage){
         // 采集器序列号
         let serial = dauSerial
         var dataArray: [UInt8] = []
@@ -36,33 +32,19 @@ class MGDAUWritePackage: MGModbusPackage {
             dataArray.append(contentsOf: Array(paddingData))
         }
         
-        // 参数编号个数
-        let count = parameters.count
-        dataArray.append(contentsOf: [UInt8(count >> 8), UInt8(count & 0xFF)])
+        // 设置透传区数据的长度
+        let pData = pPackage.asData()
+        let length = pData.count
         
-        // 设置数据的长度 (默认值，非准确值)
-        var length = 0
         dataArray.append(contentsOf: [UInt8(0), UInt8(length & 0xFF)])
         
-        // 设置数据
-        for para in parameters {
-            let number = para.key.number
-            let value = para.value
-            let dataLen = value.count
-            dataArray.append(contentsOf: [UInt8(number >> 8), UInt8(number & 0xFF)])
-            dataArray.append(contentsOf: [UInt8(dataLen >> 8), UInt8(dataLen & 0xFF)])
-            dataArray.append(contentsOf: value)
-            length = length + dataLen + 4
-        }
+        // 设置透传区数据
+        dataArray.append(contentsOf: pData)
         let data = Data(dataArray)
-        
-        // 设置数据的长度 (准确值)
-        dataArray[12] = UInt8(length >> 8)
-        dataArray[13] = UInt8(length & 0xFF)
+    
         self.init(validData: data)
         
-        self.dauSerial = dauSerial
-        self.params = parameters
+        self.penetrateDataLenth = UInt16(length)
     }
     
     /**
@@ -91,14 +73,14 @@ class MGDAUWritePackage: MGModbusPackage {
         if let serialStr = Data(serialData).stringUTF8 {
             self.dauSerial = serialStr
         }
-        guard length > 10 else {print("数据长度有误2，无参数编号个数信息！");return}
-        parasCount = Int(Data(validDataArray[10...11]).uint16)
-        guard length > 11 else {print("数据长度有误3，无状态码信息！");return}
-        code = MGModBusStatusType(rawValue: validDataArray[12]) ?? .unknow
+        guard length > 10 else {print("MGDAUPenetratePackage 数据长度有误2，无透传数据长度信息！");return}
+        penetrateDataLenth = Data(validDataArray[10...11]).uint16
+        guard length > 11 else {print("MGDAUPenetratePackage 数据长度有误3，无透传数据！");return}
+        penetrateData = Data(validDataArray[12...validDataArray.count-1])
     }
     
     /// 直接使用数据区Data发送命令
     init(validData: Data, transactId: UInt16=0x00) {
-        super.init(command: .DAU_write, validData: validData, transactId: transactId)
+        super.init(command: .DAU_via, validData: validData, transactId: transactId)
     }
 }

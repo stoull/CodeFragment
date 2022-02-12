@@ -58,7 +58,11 @@ class MGModbusPackage {
     
     var asData: Data {
         if let validData = self.validData {
-            let cmdData = createCommand(command: self.command, data: Array(validData))
+            // 数据区加密(循环异或秘钥)
+            let xorkey = "Growatt"
+            let cryptData = self.XOR(data: validData, key: xorkey)
+            
+            let cmdData = createCommand(command: self.command, data: Array(cryptData))
 //            print("as cmd data: \(cmdData.hexEncodedString())")
             return cmdData
         } else {
@@ -117,17 +121,19 @@ class MGModbusPackage {
     }
 
     // MARK: 数据区循环异或秘钥
-    func XOR(data:[UInt8], key: String) {
+    func XOR(data: Data, key: String) -> Data {
         var index: Int = 0
         var result:[UInt8]=[]
         let utf8Key = Array(key.utf8.map({UInt8($0)}))
-        for bt in data {
+        let dataArray = Array(data)
+        for bt in dataArray {
             if index == key.count{
                 index = 0
             }
             result.append(bt^utf8Key[index])
             index+=1
         }
+        return Data(result)
     }
     
     // MARK: - CBC
