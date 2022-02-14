@@ -60,15 +60,15 @@ extension MGPenetrateModBus {
         return Data(dataArray)
     }
     
-    func getCrc16(data: Data, seed: UInt16 = 0x0000ffff) -> UInt16 {
+    func getCrc16(data: Data, seed: UInt16 = 0xFFFF) -> UInt16 {
         var crcWord:UInt16 = seed
         let dataArray = Array(data)
         dataArray.forEach { byte in
-            crcWord ^= UInt16(byte) & 0x000000ff
+            crcWord ^= UInt16(byte) & 0xFFFF
             (0...7).forEach { _ in
-                if (crcWord & 0x00000001) == 1 {
+                if (crcWord & 0x0001) == 1 {
                     crcWord = crcWord>>1
-                    crcWord = crcWord^0x0000A001
+                    crcWord = crcWord^0xA001
                 } else {
                     crcWord = crcWord>>1
                 }
@@ -77,7 +77,7 @@ extension MGPenetrateModBus {
         let crcH = UInt8(0xff&(crcWord>>8))
         let crcL = UInt8(0xff&crcWord)
         let crcUnit16 = Data([crcH, crcL]).withUnsafeBytes { $0.load(as: UInt16.self) }
-        return crcUnit16
+        return crcUnit16.bigEndian
     }
 }
 

@@ -16,6 +16,11 @@ protocol MGBTLECentralManagerDelegate {
     
 }
 
+enum MGBTLECentralConnectStatus {
+    case connected
+    case connecting
+}
+
 class MGBTLECentralManager: NSObject {
     typealias ScanPeripheralDiscovered = (MGBTLEDevice?, MGError?)->Void
     typealias BtleResult = (MGBTLEDevice, MGError?)->Void
@@ -94,6 +99,7 @@ class MGBTLECentralManager: NSObject {
     func connectTo(device: MGBTLEDevice, resultHandler: BtleResult?) {
         self.currentOperateDevice = device
         if let periph = device.peripheral {
+            periph.delegate = self
             self.peripheralConnectResult = resultHandler
             print("Connecting to perhiperal %@", periph.services as Any)
             centralManager.connect(periph, options: nil)
@@ -175,8 +181,7 @@ class MGBTLECentralManager: NSObject {
             data.copyBytes(to: &rawPacket, count: bytesToCopy)
             let packetData = Data(bytes: &rawPacket, count: bytesToCopy)
             
-            let stringFromData = String(data: packetData, encoding: .utf8)
-            print("Writing %d bytes: %s", bytesToCopy, String(describing: stringFromData))
+            print("Writing data: \(packetData.hexEncodedString().uppercased())")
             
             discoveredPeripheral.writeValue(packetData, for: transferCharacteristic, type: .withResponse)
             
@@ -303,8 +308,8 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
         preWriteData.removeAll(keepingCapacity: false)
         
         // Make sure we get the discovery callbacks
-//        peripheral.delegate = self
-//
+        peripheral.delegate = self
+        
 //        // Search only for services that match our UUID
         peripheral.discoverServices([MGTransferService.serviceUUID])
         self.currentOperatePeripherals = peripheral
@@ -350,6 +355,7 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
         for service in invalidatedServices where service.uuid == MGTransferService.serviceUUID {
             print("Transfer service is invalidated - rediscover services")
             peripheral.discoverServices([MGTransferService.serviceUUID])
+            peripheral.delegate = self
         }
     }
 

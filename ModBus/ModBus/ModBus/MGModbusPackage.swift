@@ -9,6 +9,8 @@ import Foundation
 import CryptoSwift
 import BigInt
 
+let k_MGDAU_XOR_KEY: String = "Growatt"
+
 class MGModbusPackage {
     var modMode: ModbusMode = .tcp
     
@@ -41,6 +43,7 @@ class MGModbusPackage {
         }
     }
     
+    /// 解析从设备过来的data, 需要解密码及crc验证
     init(modbusPackage data: Data) throws {
         let dataArray = Array(data)
         guard dataArray.count > 8 else {
@@ -53,13 +56,14 @@ class MGModbusPackage {
         self.length = lenght
         self.slaveAdress = dataArray[6]
         self.command = ModCommand(rawValue: dataArray[7]) ?? .unkonw
-        self.validData = Data(dataArray[8...Int(8+length-3)])
+        let crypData = Data(dataArray[8...Int(8+length-3)])
+        self.validData = XOR(data: crypData, key: k_MGDAU_XOR_KEY)
     }
     
     var asData: Data {
         if let validData = self.validData {
             // 数据区加密(循环异或秘钥)
-            let xorkey = "Growatt"
+            let xorkey = k_MGDAU_XOR_KEY
             let cryptData = self.XOR(data: validData, key: xorkey)
             
             let cmdData = createCommand(command: self.command, data: Array(cryptData))
@@ -99,8 +103,10 @@ class MGModbusPackage {
         if data.count > 0 {
             package.append(contentsOf: data)
         }
-//        let crcCode = data.crc16()
-//        package.append(contentsOf:[UInt8(crcCode >> 8), UInt8(crcCode & 0xFF)])
+//        let crcCode = Data(package).crc16()
+        let oldCrc = getCrc16(data: Data(package), seed: 0xFFFF)
+        
+        package.append(contentsOf:[UInt8(oldCrc >> 8), UInt8(oldCrc & 0xFF)])
         let newData = Data(package)
         return newData
     }
@@ -161,7 +167,7 @@ class MGModbusPackage {
     
     
     // MARK: - CRC 16
-    func crc16(for inputs: [UInt8], initialValue: UInt16 = 0x00) -> UInt16 {
+    func crc16(for inputs: [UInt8], initialValue: UInt16 = 0xFFFF) -> UInt16 {
         inputs.reduce(initialValue) { remainder, byte in
             let bigEndianInput = UInt16(byte) << 8
             let index = (bigEndianInput ^ remainder) >> 8
@@ -172,11 +178,87 @@ class MGModbusPackage {
     func crc16(for input: UInt16, polynomial: UInt16) -> UInt16 {
         let result = UInt16(input).bigEndian
         return (0..<8).reduce(result) { result, _ in
-            let isMostSignificantBitOne = result & 0x8000 != 0
+            let isMostSignificantBitOne = result & 0x0001 != 0
             guard isMostSignificantBitOne else {
                 return result << 1
             }
             return (result << 1) ^ polynomial
         }
     }
+    
+    /// 专设备
+    func getCrc16(data: Data, seed: UInt16 = 0xFFFF) -> UInt16 {
+        var crcWord:UInt16 = seed
+        let dataArray = Array(data)
+        dataArray.forEach { byte in
+            crcWord ^= UInt16(byte) & 0xFFFF
+            (0...7).forEach { _ in
+                if (crcWord & 0x0001) == 1 {
+                    crcWord = crcWord>>1
+                    crcWord = crcWord^0xA001
+                } else {
+                    crcWord = crcWord>>1
+                }
+            }
+        }
+        let crcH = UInt8(0xff&(crcWord>>8))
+        let crcL = UInt8(0xff&crcWord)
+        let crcUnit16 = Data([crcH, crcL]).withUnsafeBytes { $0.load(as: UInt16.self) }
+        return crcUnit16.bigEndian
+    }
+    
+    // 采集器端代码
+    /**
+     /*******************************************************************************
+     * 函数名: crc16_ccitt
+     * 功  能: crc校验
+     * 输  入: *Buff：校验数组  nSize：校验数组长度
+     * 输  出: none
+     * 返回值: crc：校验结果
+     * 注  意:  ＾（异或运算）
+     *******************************************************************************/
+     unsigned short int  Modbus_Caluation_CRC16(unsigned char *Buff, unsigned int nSize)
+     {
+         unsigned short int m_Crc = 0;
+         unsigned short int i = 0,j = 0;
+         unsigned short int m_InitCrc = 0xFFFF;
+
+         for(i=0; i<nSize; i++)
+         {
+             m_InitCrc ^= Buff[i];
+             for(j=0; j<8; j++)
+             {
+                 m_Crc = m_InitCrc;
+                 m_InitCrc >>= 1;
+                 if(m_Crc&0x0001)
+                 {
+                     m_InitCrc ^= 0xa001;
+                 }
+             }
+         }
+         return m_InitCrc;
+     }
+     
+     /*****************************************
+         发送服务器数据 协议异或
+         6.0 版本协议
+     ******************************************/
+     #define GRT_KEY_LEN        7
+     const char GrowattKey[GRT_KEY_LEN] = {'G', 'r', 'o', 'w', 'a', 't', 't'};
+     uint8_t encrypt(uint8_t *pdata, uint16_t length)
+     {
+         uint8_t i = 0;
+         if(length >= ServerProtocolMAXSIZE)
+         {
+             return 1;
+         }
+         while(length--)
+         {
+             *pdata++ ^= GrowattKey[i++];
+             if(i == GRT_KEY_LEN)
+                 i = 0;
+         }
+         return 0;
+     }
+     */
 }
