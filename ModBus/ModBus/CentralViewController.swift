@@ -8,6 +8,7 @@
 import UIKit
 import CoreBluetooth
 import os
+import SwiftUI
 
 
 class CentralViewController: UIViewController {
@@ -45,6 +46,16 @@ class CentralViewController: UIViewController {
         self.activityIndicatorView.isHidden = true
         
         
+//        let string = "000100070022011902213F2028323D1F2A37776074740C72E77D660E1F33171C0350A17E57312520273545773B5F26514344774258A56B7F013410301212044C754459BC6B7820221C0B163E30357F302D47AA7E711317011300BE7E49263F5A2D3D3A0C2D2C4152443677B8657D2427241833594253464D8F786423041A10262D0C12121C1D81786723041A10265F5831A17E7813170113002B377F425D4750B41CA9"
+//        var sSting = string
+//        var resultS: String = ""
+//        for i in 1...Int(string.count/2) {
+//            let preS = sSting.prefix(2)
+//            resultS.append("0x\(preS), ")
+//            sSting.removeFirst()
+//            sSting.removeFirst()
+//        }
+//        print(resultS)
     }
     
     func isBluetoothAuthorized() -> Bool {
@@ -116,31 +127,50 @@ class CentralViewController: UIViewController {
     }
 
     // MARK: - Helper Methods
-    @IBAction func sendCmd(_ sender: Any) {
-        /// 测试-查询wifi信息
-//        let wifiCmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifiList]).asData
+    @IBAction func test19Commnand(_ sender: Any) {
+        
+        let dataA: [UInt8] = [0x00, 0x01, 0x00, 0x07, 0x00, 0x9B, 0x01, 0x19, 0x02, 0x21, 0x3F, 0x20, 0x28, 0x32, 0x3D, 0x1F, 0x2A, 0x37, 0x77, 0x60, 0x74, 0x74, 0x0C, 0x72, 0xE7, 0x7D, 0x66, 0x0E, 0x1F, 0x33, 0x17, 0x1C, 0x03, 0x50, 0xA1, 0x7E, 0x57, 0x31, 0x25, 0x20, 0x27, 0x35, 0x45, 0x77, 0x3B, 0x5F, 0x26, 0x51, 0x43, 0x44, 0x77, 0x42, 0x58, 0xA5, 0x6B, 0x7F, 0x01, 0x34, 0x10, 0x30, 0x12, 0x12, 0x04, 0x4C, 0x75, 0x44, 0x59, 0xBC, 0x6B, 0x78, 0x20, 0x22, 0x1C, 0x0B, 0x16, 0x3E, 0x30, 0x35, 0x7F, 0x30, 0x2D, 0x47, 0xAA, 0x7E, 0x71, 0x13, 0x17, 0x01, 0x13, 0x00, 0xBE, 0x7E, 0x49, 0x26, 0x3F, 0x5A, 0x2D, 0x3D, 0x3A, 0x0C, 0x2D, 0x2C, 0x41, 0x52, 0x44, 0x36, 0x77, 0xB8, 0x65, 0x7D, 0x24, 0x27, 0x24, 0x18, 0x33, 0x59, 0x42, 0x53, 0x46, 0x4D, 0x8F, 0x78, 0x64, 0x23, 0x04, 0x1A, 0x10, 0x26, 0x2D, 0x0C, 0x12, 0x12, 0x1C, 0x1D, 0x81, 0x78, 0x67, 0x23, 0x04, 0x1A, 0x10, 0x26, 0x5F, 0x58, 0x31, 0xA1, 0x7E, 0x78, 0x13, 0x17, 0x01, 0x13, 0x00, 0x2B, 0x37, 0x7F, 0x42, 0x5D, 0x47, 0x50, 0xB4, 0x1C, 0xA9]
+        
+        typealias DAU_Wifi_Info = (String, Int)
+        var dau_wifi_list: [DAU_Wifi_Info] = []
+        if let cmd = try? MGDAUReadPackage(responseData: Data(dataA)) {
+            if let wifiList = MGModPackageManager.unpackDAUWifiList(from: cmd) {
+                print("获取到采集器wifi列表：\(wifiList)")
+            } else {
+                print("采集器wifi列表解析失败")
+            }
+        }
+        
+
+//        let cmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID]).asData
 //
-//        print("wifiCmd Data: \(wifiCmd.hexEncodedString().uppercased())")
-//        btleManager.writeData(with: wifiCmd)
-        
-        let getWifiPara = "get router name".data(using: .utf8)!
-        let getWifiCmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifiList: getWifiPara]).asData
-        
-        /// 测试-设置wifi信息参数
-        print("get wifiCmd Data: \(getWifiCmd.hexEncodedString().uppercased())")
-        
-        btleManager.writeData(with: getWifiCmd)
+//        print("0x19 cmd Data: \(cmd.hexEncodedString().uppercased())")
+//        btleManager.writeData(with: cmd)
     }
 
-    @IBAction func setPwd(_ sender: Any) {
-        let wifiName = "Growatt88888".data(using: .utf8)!
-        let wifiPwd = "wifipassword".data(using: .utf8)!
-        let setWifiCmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID: wifiName, .wifi_password: wifiPwd]).asData
+    @IBAction func test18Commnand(_ sender: Any) {
+        
+        /// 获取wifi列表信息
+        let getWifiPara = "get router name".data(using: .utf8)!
+        let cmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifiList: getWifiPara]).asData
         
         /// 测试-设置wifi信息参数
-        print("set wifiCmd Data: \(setWifiCmd.hexEncodedString().uppercased())")
+//        let wifiName = "Growatt88888".data(using: .utf8)!
+//        let wifiPwd = "wifipassword".data(using: .utf8)!
+//        let cmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID: wifiName, .wifi_password: wifiPwd]).asData
         
-        btleManager.writeData(with: setWifiCmd)
+        print("0x18 cmd Data: \(cmd.hexEncodedString().uppercased())")
+        
+        btleManager.writeData(with: cmd)
+    }
+    
+    @IBAction func test17Commnand(_ sender: Any) {
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 12, registerTypeOrFunction: .read_holding, startAddress: 23, count: 1, setData: nil)
+        let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
+        
+        print("0x17 Cmd Data: \(viaCmd.hexEncodedString().uppercased())")
+        
+        btleManager.writeData(with: viaCmd)
     }
     
     @IBAction func searchButtonDidClick(_ sender: UIButton) {
@@ -231,26 +261,25 @@ extension CentralViewController: MGBTLECentralManagerDelegate {
         
         textView.text = textView.text + "\n" + "Raw Data: " + rawDataHex
         
-        if data.count > 6 {
-            let command = ModCommand(rawValue: Array(data)[7]) ?? .unkonw
-            
-            if command == .DAU_read {
-                if let rPackage = try? MGDAUReadPackage(responseData: data) {
-                    textView.text = textView.text + "\n" + "0x19 Valid: " + (rPackage.validData?.hexEncodedString() ?? " ")
-                    textView.text = textView.text + "\n" + "Params " + rPackage.params.description
-                    
-                    print(rPackage.code)
+        if let package = MGModPackageManager.unpackDAUPackage(withResponse: data) {
+            if package.command == .DAU_read,
+               let wPackage = package as? MGDAUReadPackage {
+                
+                if let wifiList = MGModPackageManager.unpackDAUWifiList(from: wPackage) {
+                    print("获取到采集器wifi列表：\(wifiList)")
+                } else {
+                    print("采集器wifi列表解析失败")
                 }
-            } else if command == .DAU_write {
-                if let wPackage = try? MGDAUWritePackage(responseData: data) {
-                    textView.text = textView.text + "\n" + "0x18 Valid: " + (wPackage.validData?.hexEncodedString() ?? " ")
-                    textView.text = textView.text + "\n" + "Params " + wPackage.params.description
+                
+            } else if package.command == .DAU_write,
+                      let rPackage = package as? MGDAUWritePackage {
+                if rPackage.params.keys.contains(.wifiList) {
                     
-                    print(wPackage.code)
                 }
-            } else if command == .DAU_via {
+            } else if package.command == .DAU_via {
                 
             }
         }
+        
     }
 }

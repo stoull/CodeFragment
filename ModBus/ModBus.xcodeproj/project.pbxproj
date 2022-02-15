@@ -215,6 +215,7 @@
 		C91373FD27A390E700F5559C /* ModBus */ = {
 			isa = PBXGroup;
 			children = (
+				C975671127A3F2B600B54A59 /* MGDAUPackage.swift */,
 				C91373FE27A390E700F5559C /* MGModbus.swift */,
 				C913740027A390E700F5559C /* Modbus.swift */,
 				C91373FF27A390E700F5559C /* MGDataConvert.swift */,
@@ -222,7 +223,6 @@
 				C913740227A390E700F5559C /* MGModbusPackage.swift */,
 				C975670627A3DA4D00B54A59 /* MGModPackageManager.swift */,
 				C975670B27A3E10800B54A59 /* MGDAUParameter.swift */,
-				C975671127A3F2B600B54A59 /* MGDAUPackage.swift */,
 				C975670D27A3F1B600B54A59 /* MGDAUReadPackage.swift */,
 				C975670F27A3F27600B54A59 /* MGDAUWritePackage.swift */,
 				C942D9CE27B63968008BFFE9 /* MGDAUPenetratePackage.swift */,

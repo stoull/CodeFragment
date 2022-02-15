@@ -82,11 +82,11 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCs-qy-T2k">
-                    <rect key="frame" x="320" y="44" width="74" height="31"/>
+                    <rect key="frame" x="303" y="44" width="91" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Get wifi"/>
+                    <buttonConfiguration key="configuration" style="plain" title="send 0x19"/>
                     <connections>
-                        <action selector="sendCmd:" destination="-1" eventType="touchUpInside" id="G24-Ct-1sy"/>
+                        <action selector="test19Commnand:" destination="-1" eventType="touchUpInside" id="xx2-0Y-AdY"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvv-Wr-lUp">
@@ -96,11 +96,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfE-me-EjH">
-                    <rect key="frame" x="214" y="44" width="98" height="31"/>
+                    <rect key="frame" x="204" y="44" width="91" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="SetWifiPwd"/>
+                    <buttonConfiguration key="configuration" style="plain" title="send 0x18"/>
                     <connections>
-                        <action selector="setPwd:" destination="-1" eventType="touchUpInside" id="VWH-3m-RDY"/>
+                        <action selector="test18Commnand:" destination="-1" eventType="touchUpInside" id="b0y-6n-2AW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrf-t2-jLA">
+                    <rect key="frame" x="104" y="44" width="90" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="send 0x17"/>
+                    <connections>
+                        <action selector="test17Commnand:" destination="-1" eventType="touchUpInside" id="ITM-og-NGJ"/>
                     </connections>
                 </button>
             </subviews>
@@ -111,9 +119,11 @@
                 <constraint firstItem="pvv-Wr-lUp" firstAttribute="top" secondItem="ZYQ-WN-4bT" secondAttribute="bottom" constant="8" symbolic="YES" id="50Z-aj-yfM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8CS-7o-tnp" secondAttribute="trailing" id="6Wc-bg-mM1"/>
                 <constraint firstItem="8CS-7o-tnp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7YT-il-As5"/>
+                <constraint firstItem="DfE-me-EjH" firstAttribute="centerY" secondItem="Lrf-t2-jLA" secondAttribute="centerY" id="8Wf-SA-4Gb"/>
                 <constraint firstItem="ZYQ-WN-4bT" firstAttribute="top" secondItem="ggV-38-BU6" secondAttribute="bottom" id="8gl-zP-Mp1"/>
                 <constraint firstItem="EUb-Xs-q7F" firstAttribute="top" secondItem="arN-7k-PXZ" secondAttribute="bottom" constant="10" id="97n-tS-fMv"/>
                 <constraint firstItem="ZYQ-WN-4bT" firstAttribute="top" secondItem="8CS-7o-tnp" secondAttribute="bottom" constant="30" id="9gH-rt-fIK"/>
+                <constraint firstItem="DfE-me-EjH" firstAttribute="leading" secondItem="Lrf-t2-jLA" secondAttribute="trailing" constant="10" id="9nn-Yw-BuB"/>
                 <constraint firstItem="ggV-38-BU6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="BbB-VL-X7C"/>
                 <constraint firstItem="EUb-Xs-q7F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="D6B-QE-hgu"/>
                 <constraint firstItem="ZYQ-WN-4bT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DbS-LP-siP"/>
