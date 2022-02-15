@@ -23,7 +23,7 @@ class MGDAUReadPackage: MGModbusPackage {
         let serial = dauSerial
         var dataArray: [UInt8] = []
         if let serialData = serial.data(using: .utf8) {
-            /// 补齐10位
+            /// 补齐10或位
             var paddingData = serialData
             if serialData.count < 10 {
                 for _ in serialData.count...9{
@@ -61,6 +61,7 @@ class MGDAUReadPackage: MGModbusPackage {
      - Parameter para1: responseData 采集器响映的查询数据
      */
     init(responseData: Data) throws{
+        print("0x19 Init with data: \(responseData.hexEncodedString().uppercased())")
         try super.init(modbusPackage: responseData)
         
 //        guard self.command == .DAU_read else {
@@ -74,24 +75,26 @@ class MGDAUReadPackage: MGModbusPackage {
         let validDataArray = Array(validData)
         let length = validDataArray.count
 
-        guard length > 9 else {
-            print("数据长度有误，无序列号信息！")
+        guard length > k_MGDAU_serialNumber_lenthg-1 else {
+            print("数据长度有误，无序列号信息！ValidData: \(validData.hexEncodedString().uppercased())")
             return
         }
-        let serialData = validDataArray[0...9]
+        let serialData = validDataArray[0...k_MGDAU_serialNumber_lenthg-1]
         if let serialStr = Data(serialData).stringUTF8 {
             self.dauSerial = serialStr
         }
-        guard length > 10 else {print("数据长度有误2，无参数编号个数信息！");return}
-        parasCount = Int(Data(validDataArray[10...11]).uint16)
-        guard length > 11 else {print("数据长度有误3，无状态码信息！");return}
-        code = MGModBusStatusType(rawValue: validDataArray[12]) ?? .unknow
+        guard length > k_MGDAU_serialNumber_lenthg else {print("0x19数据长度有误2，无参数编号个数信息！ValidData: \(validData.hexEncodedString().uppercased())");return}
+        parasCount = Int(Data(validDataArray[k_MGDAU_serialNumber_lenthg...k_MGDAU_serialNumber_lenthg+1]).uint16)
+        guard length > k_MGDAU_serialNumber_lenthg+1 else {print("0x19数据长度有误3，无状态码信息！");return}
+        code = MGModBusStatusType(rawValue: validDataArray[k_MGDAU_serialNumber_lenthg+2]) ?? .unknow
         
         var point = 13 // 序列号，参数编号个数和状态码之后
         while point < length {
+            guard point+3 < validDataArray.count else {print("0x19数据长度有误4，参数信息错误！ValidData: \(validData.hexEncodedString().uppercased())");return}
             let paraNum = Data(validDataArray[point...point+1]).uint16
             let paraLen = Data(validDataArray[point+2...point+3]).uint16
             point = point + 4
+            guard point+Int(paraLen-1) < validDataArray.count else {print("0x19数据长度有误5，参数数据错误！ValidData: \(validData.hexEncodedString().uppercased())");return}
             let paraData = Data(validDataArray[point...point+Int(paraLen-1)])
             let para = MGDAUParameter.from(parameterNumber: paraNum)
             params[para] = paraData

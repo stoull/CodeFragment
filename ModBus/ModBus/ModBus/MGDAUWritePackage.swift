@@ -70,6 +70,7 @@ class MGDAUWritePackage: MGModbusPackage {
      - Parameter para1: responseData 采集器响映的查询数据
      */
     init(responseData: Data) throws{
+        print("0x18 Init with data: \(responseData.hexEncodedString().uppercased())")
         try super.init(modbusPackage: responseData)
         
 //        guard self.command == .DAU_read else {
@@ -83,18 +84,18 @@ class MGDAUWritePackage: MGModbusPackage {
         let validDataArray = Array(validData)
         let length = validDataArray.count
 
-        guard length > 9 else {
-            print("数据长度有误，无序列号信息！")
+        guard length > k_MGDAU_serialNumber_lenthg-1 else {
+            print("数据长度有误，无序列号信息！ValidData: \(validData.hexEncodedString().uppercased())")
             return
         }
-        let serialData = validDataArray[0...9]
+        let serialData = validDataArray[0...k_MGDAU_serialNumber_lenthg-1]
         if let serialStr = Data(serialData).stringUTF8 {
             self.dauSerial = serialStr
         }
-        guard length > 10 else {print("数据长度有误2，无参数编号个数信息！");return}
+        guard length > k_MGDAU_serialNumber_lenthg else {print("0x18数据长度有误2，无参数编号个数信息！ValidData: \(validData.hexEncodedString().uppercased())");return}
         parasCount = Int(Data(validDataArray[10...11]).uint16)
-        guard length > 11 else {print("数据长度有误3，无状态码信息！");return}
-        code = MGModBusStatusType(rawValue: validDataArray[12]) ?? .unknow
+        guard length > k_MGDAU_serialNumber_lenthg+1 else {print("0x18数据长度有误3，无状态码信息！ValidData: \(validData.hexEncodedString()).uppercased()");return}
+        code = MGModBusStatusType(rawValue: validDataArray[k_MGDAU_serialNumber_lenthg+2]) ?? .unknow
     }
     
     /// 直接使用数据区Data发送命令

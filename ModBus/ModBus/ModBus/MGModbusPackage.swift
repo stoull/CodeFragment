@@ -11,6 +11,9 @@ import BigInt
 
 let k_MGDAU_XOR_KEY: String = "Growatt"
 
+/// 协议采集器序列号长度
+let k_MGDAU_serialNumber_lenthg: Int = 10 // 10位，服务器对采集器为30位
+
 class MGModbusPackage {
     var modMode: ModbusMode = .tcp
     

@@ -26,7 +26,7 @@ class CentralViewController: UIViewController {
     
     var bluetoothHelper: HSBluetoochManager!
     
-    let deviceSerialNumber: String = "0000000000" //"D0BSB19003"
+    let deviceSerialNumber: String = "D0BSB19003" //"D0BSB19003"
 
     convenience init() {
         self.init(nibName: "CentralViewController", bundle: nil)
@@ -85,21 +85,21 @@ class CentralViewController: UIViewController {
 //
 //        /// 测试-0x18参数设置操作
 //        let dataArray_18: [UInt8] = [1,13,1,5,0,17,1,19,9,9,9,9,9,9,9,9,9,9,0,2,0,0,0]
-        let dataArray_18: [UInt8] = [0x00,0x01,0x00,0x05,0x00,0x23,0x01,0x18,0x26,0x13,0x0e,0x16,0x00,0x15,0x15,0x26,0x13,0x0e,0x77,0x60,0x74,0x67,0x47,0x39,0x6f,0x78,0x06,0x11,0x00,0x67,0x00,0x00,0x02,0x15,0x11,0x06,0x67,0x1c,0x0e,0x1a,0x04] //  00 01 00 05 00 23 01 18 26 13 0e 16 00 15 15 26 13 0e 77 60 74 67 47 39 6f 78 06 11 00 67 00 00 02 15 11 06 67 1c 0e 1a 04 8e 2f
-//        let dataArray_18: [UInt8] = [0x00,0x01,0x00,0x05,0x00,0x21,0x01,0x18,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x00,0x01,0x00,0x13,0x00,0x4b,0x00,0x0f,0x67,0x65,0x74,0x20,0x72,0x6f,0x75,0x74,0x65,0x72,0x20,0x6e,0x61]
-        let data_18 = Data(dataArray_18)
-        do {
-            let readPackage = try MGDAUWritePackage(responseData: data_18)
-            let rData = readPackage.asData
-            print("0x18 Package data: \(rData.hexEncodedString().uppercased())")
-            if readPackage.code == .successs {
-                print("测试0x18参数设置操作 成功")
-            } else {
-                print("测试0x18参数设置操作 失败")
-            }
-        } catch let error {
-            print("测试0x18参数设置操作 失败 \(error)")
-        }
+//        let dataArray_18: [UInt8] = [0x00,0x01,0x00,0x05,0x00,0x23,0x01,0x18,0x26,0x13,0x0e,0x16,0x00,0x15,0x15,0x26,0x13,0x0e,0x77,0x60,0x74,0x67,0x47,0x39,0x6f,0x78,0x06,0x11,0x00,0x67,0x00,0x00,0x02,0x15,0x11,0x06,0x67,0x1c,0x0e,0x1a,0x04] //  00 01 00 05 00 23 01 18 26 13 0e 16 00 15 15 26 13 0e 77 60 74 67 47 39 6f 78 06 11 00 67 00 00 02 15 11 06 67 1c 0e 1a 04 8e 2f
+////        let dataArray_18: [UInt8] = [0x00,0x01,0x00,0x05,0x00,0x21,0x01,0x18,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x00,0x01,0x00,0x13,0x00,0x4b,0x00,0x0f,0x67,0x65,0x74,0x20,0x72,0x6f,0x75,0x74,0x65,0x72,0x20,0x6e,0x61]
+//        let data_18 = Data(dataArray_18)
+//        do {
+//            let readPackage = try MGDAUWritePackage(responseData: data_18)
+//            let rData = readPackage.asData
+//            print("0x18 Package data: \(rData.hexEncodedString().uppercased())")
+//            if readPackage.code == .successs {
+//                print("测试0x18参数设置操作 成功")
+//            } else {
+//                print("测试0x18参数设置操作 失败")
+//            }
+//        } catch let error {
+//            print("测试0x18参数设置操作 失败 \(error)")
+//        }
         
         print("测试-0x17参数设置操作")
         /// 测试-0x17参数设置操作
@@ -118,10 +118,18 @@ class CentralViewController: UIViewController {
     // MARK: - Helper Methods
     @IBAction func sendCmd(_ sender: Any) {
         /// 测试-查询wifi信息
-        let wifiCmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifiList]).asData
+//        let wifiCmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifiList]).asData
+//
+//        print("wifiCmd Data: \(wifiCmd.hexEncodedString().uppercased())")
+//        btleManager.writeData(with: wifiCmd)
         
-        print("wifiCmd Data: \(wifiCmd.hexEncodedString().uppercased())")
-        btleManager.writeData(with: wifiCmd)
+        let getWifiPara = "get router name".data(using: .utf8)!
+        let getWifiCmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifiList: getWifiPara]).asData
+        
+        /// 测试-设置wifi信息参数
+        print("get wifiCmd Data: \(getWifiCmd.hexEncodedString().uppercased())")
+        
+        btleManager.writeData(with: getWifiCmd)
     }
 
     @IBAction func setPwd(_ sender: Any) {
@@ -201,6 +209,10 @@ extension CentralViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension CentralViewController: MGBTLECentralManagerDelegate {
+    func centralManager(manager: MGBTLECentralManager, connectionStatusDidChange status: MGBTLECentralConnectionStatus) {
+        self.connectStatusLabel.text = status.rawValue
+    }
+    
     func centralManager(manager: MGBTLECentralManager, didWriteData data: Data, for peripheral: CBPeripheral, error: Error?) {
         print("写入数据成功: \(data.hexEncodedString().uppercased())")
         writeDataTextView.text = writeDataTextView.text + "\n" +  data.hexEncodedString().uppercased()
@@ -214,23 +226,31 @@ extension CentralViewController: MGBTLECentralManagerDelegate {
         print("特征数据接收:")
 //        let modCmd = MGModbusCommand(with: data)
         
-        let command = ModCommand(rawValue: Array(data)[7]) ?? .unkonw
+        let rawDataHex = data.hexEncodedString().uppercased()
+        print("Recieved 特征数据: \(rawDataHex)")
         
-        if command == .DAU_read {
-            if let rPackage = try? MGDAUReadPackage(responseData: data) {
-                print(rPackage.code)
-            }
-        } else if command == .DAU_write {
-            if let wPackage = try? MGDAUWritePackage(responseData: data) {
-                print(wPackage.code)
-            }
-        } else if command == .DAU_via {
+        textView.text = textView.text + "\n" + "Raw Data: " + rawDataHex
+        
+        if data.count > 6 {
+            let command = ModCommand(rawValue: Array(data)[7]) ?? .unkonw
             
+            if command == .DAU_read {
+                if let rPackage = try? MGDAUReadPackage(responseData: data) {
+                    textView.text = textView.text + "\n" + "0x19 Valid: " + (rPackage.validData?.hexEncodedString() ?? " ")
+                    textView.text = textView.text + "\n" + "Params " + rPackage.params.description
+                    
+                    print(rPackage.code)
+                }
+            } else if command == .DAU_write {
+                if let wPackage = try? MGDAUWritePackage(responseData: data) {
+                    textView.text = textView.text + "\n" + "0x18 Valid: " + (wPackage.validData?.hexEncodedString() ?? " ")
+                    textView.text = textView.text + "\n" + "Params " + wPackage.params.description
+                    
+                    print(wPackage.code)
+                }
+            } else if command == .DAU_via {
+                
+            }
         }
-        
-        print("Recieved 特征数据: \(data.hexEncodedString().uppercased())")
-        
-        textView.text = textView.text + "\n" + data.hexEncodedString().uppercased()
-        
     }
 }

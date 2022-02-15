@@ -8,17 +8,33 @@
 import Foundation
 import CoreBluetooth
 import os
+import SwiftUI
 
 protocol MGBTLECentralManagerDelegate {
+    func centralManager(manager: MGBTLECentralManager, connectionStatusDidChange status: MGBTLECentralConnectionStatus)
     func centralManager(manager: MGBTLECentralManager, didDisconnectDevice peripheral: CBPeripheral, error: Error?)
     func centralManager(manager: MGBTLECentralManager, didRecievedData data: Data)
     func centralManager(manager: MGBTLECentralManager, didWriteData data: Data, for peripheral: CBPeripheral, error: Error?)
     
 }
 
-enum MGBTLECentralConnectStatus {
-    case connected
-    case connecting
+/// 蓝牙连接的状态
+enum MGBTLECentralConnectionStatus: String {
+    case Idle
+    case Scanning
+    case DiscoveredPeripheral
+    case FinishScanning
+    case ConnectingToPeripheral
+    case RetrievingToPeripheral
+    case FailedConnectToPeripheral
+    case DisconnectedToPeripheral
+    case ConnectedToPeripheral
+    case DiscoveringServices
+    case DiscoveredServices
+    case DiscoveringCharcteristic
+    case DiscoveredCharcteristic
+    case WritingData
+    case Error
 }
 
 class MGBTLECentralManager: NSObject {
@@ -92,6 +108,7 @@ class MGBTLECentralManager: NSObject {
     func stopScanPeripheral() {
         if centralManager.isScanning {
             centralManager.stopScan()
+            print("Scanning stopped")
         }
     }
     
@@ -101,8 +118,11 @@ class MGBTLECentralManager: NSObject {
         if let periph = device.peripheral {
             periph.delegate = self
             self.peripheralConnectResult = resultHandler
-            print("Connecting to perhiperal %@", periph.services as Any)
+            print("Connecting to perhiperal %@", periph as Any)
             centralManager.connect(periph, options: nil)
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .ConnectingToPeripheral)
+            /// 设备连接成功
+            self.peripheralConnectResult?(self.currentOperateDevice!, nil)
         } else {
             resultHandler?(device, MGError(message: MGError.kCanNotFindBTLEDeviceInfo, code: 0))
         }
@@ -113,6 +133,7 @@ class MGBTLECentralManager: NSObject {
         if let perih = device.peripheral {
             perih.delegate = self
             perih.discoverServices([MGTransferService.serviceUUID])
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DiscoveringServices)
         }
     }
     
@@ -132,10 +153,12 @@ class MGBTLECentralManager: NSObject {
             print("Connecting to peripheral %@", connectedPeripheral)
             self.currentOperatePeripherals = connectedPeripheral
             centralManager.connect(connectedPeripheral, options: nil)
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .RetrievingToPeripheral)
         } else {
             // We were not connected to our counterpart, so start scanning
             centralManager.scanForPeripherals(withServices: nil,
                                                options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .Scanning)
         }
     }
     
@@ -188,6 +211,7 @@ class MGBTLECentralManager: NSObject {
             writeIterationsComplete += 1
             
             isCurrentPeripheralsWritingData = true
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .WritingData)
         }
     }
 }
@@ -280,6 +304,7 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Failed to connect to %@. %s", peripheral, String(describing: error))
         self.peripheralConnectResult?(self.currentOperateDevice!, MGError(message: error?.localizedDescription, code: 0))
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .FailedConnectToPeripheral)
         cleanup()
     }
     
@@ -297,8 +322,10 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
         print("maximumWriteValueLength: \(maxWrite) withoutResponse: \(maxWriteNo)")
         
         // Stop scanning
-        centralManager.stopScan()
-        print("Scanning stopped")
+        if centralManager.isScanning {
+            centralManager.stopScan()
+            print("Scanning stopped")
+        }
         
         // set iteration info
         connectionIterationsComplete += 1
@@ -309,11 +336,11 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
         
         // Make sure we get the discovery callbacks
         peripheral.delegate = self
-        
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .ConnectedToPeripheral)
 //        // Search only for services that match our UUID
         peripheral.discoverServices([MGTransferService.serviceUUID])
         self.currentOperatePeripherals = peripheral
-        self.peripheralConnectResult?(self.currentOperateDevice!, nil)
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DiscoveringServices)
     }
     
     /*
@@ -327,7 +354,7 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
      - Parameter peripheral: 成功断开连接的设备
      */
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Perhiperal Disconnected")
+        print("Perhiperal Disconnected Error: \(error?.localizedDescription)")
         currentOperatePeripherals = nil
         
         // We're disconnected, so start scanning again
@@ -338,6 +365,7 @@ extension MGBTLECentralManager: CBCentralManagerDelegate {
         }
         
         self.delegate?.centralManager(manager: self, didDisconnectDevice: peripheral, error: error)
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DisconnectedToPeripheral)
     }
 
 }
@@ -370,7 +398,6 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
             cleanup()
             return
         }
-        
         // Discover the characteristic we want...
         
         // Loop through the newly filled peripheral.services array, just in case there's more than one.
@@ -378,7 +405,9 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
         for service in peripheralServices {
             print("didDiscoverServices UUID: \(service.uuid)")
 //            print("didDiscoverServices UUID: \(service.uuid)")
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DiscoveredServices)
             peripheral.discoverCharacteristics([MGTransferService.characteristicUUID], for: service)
+            self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DiscoveringCharcteristic)
         }
     }
     
@@ -396,6 +425,8 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
             return
         }
         
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .DiscoveredCharcteristic)
+        
         // Again, we loop through the array, just in case and check if it's the right one
         guard let serviceCharacteristics = service.characteristics else { return }
         for characteristic in serviceCharacteristics where characteristic.uuid == MGTransferService.characteristicUUID {
@@ -403,9 +434,8 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
             transferCharacteristic = characteristic
             // 订阅特征
             peripheral.setNotifyValue(true, for: characteristic)
+            print("订阅特征: \(characteristic.uuid)")
         }
-        
-        // Once this is complete, we just need to wait for the data to come in.
     }
 
     /**
@@ -423,17 +453,18 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
         
         guard let characteristicData = characteristic.value else { return }
         
-        if let endByte = Array(characteristicData).last {
-            print("最后一个byte: \(endByte)")
-            
-            // 判断结束标志
-            if endByte == 0x88 {
-                print("特征数据接收结束")
-                noti_received_data.removeAll()
-            } else {
-//                noti_received_data.append(characteristicData)
-            }
-        }
+//        if let endByte = Array(characteristicData).last {
+//            print("最后一个byte: \(endByte)")
+//            
+//            // 判断结束标志
+//            if endByte == 0x88 {
+//                print("特征数据接收结束")
+//                noti_received_data.removeAll()
+//            } else {
+////                noti_received_data.append(characteristicData)
+//            }
+//        }
+        
         self.delegate?.centralManager(manager: self, didRecievedData: characteristicData)
     }
 
@@ -447,6 +478,7 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
         if characteristic.uuid == MGTransferService.characteristicUUID {
             self.delegate?.centralManager(manager: self, didWriteData: self.preWriteData, for: peripheral, error: error)
         }
+        self.delegate?.centralManager(manager: self, connectionStatusDidChange: .Idle)
     }
 
 

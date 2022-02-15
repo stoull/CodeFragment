@@ -13,6 +13,8 @@ class MGDAUPenetratePackage: MGModbusPackage {
     var penetrateDataLenth: UInt16 = 0
     var penetrateData: Data?
     
+    var penetrateModPackage: MGPenetrateModPackage?
+    
     convenience init(dauSerial: String, penetratePackage pPackage: MGPenetrateModPackage){
         // 采集器序列号
         let serial = dauSerial
@@ -45,6 +47,8 @@ class MGDAUPenetratePackage: MGModbusPackage {
         self.init(validData: data)
         
         self.penetrateDataLenth = UInt16(length)
+        
+        self.penetrateModPackage = pPackage
     }
     
     /**
@@ -77,6 +81,11 @@ class MGDAUPenetratePackage: MGModbusPackage {
         penetrateDataLenth = Data(validDataArray[10...11]).uint16
         guard length > 11 else {print("MGDAUPenetratePackage 数据长度有误3，无透传数据！");return}
         penetrateData = Data(validDataArray[12...validDataArray.count-1])
+        
+        if let rData = penetrateData,
+           let rPackage = try? MGPenetrateModPackage(responseData: rData) {
+            self.penetrateModPackage = rPackage
+        }
     }
     
     /// 直接使用数据区Data发送命令
