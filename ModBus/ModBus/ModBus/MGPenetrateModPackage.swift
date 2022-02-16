@@ -77,7 +77,7 @@ extension MGPenetrateModBus {
         let crcH = UInt8(0xff&(crcWord>>8))
         let crcL = UInt8(0xff&crcWord)
         let crcUnit16 = Data([crcH, crcL]).withUnsafeBytes { $0.load(as: UInt16.self) }
-        return crcUnit16.bigEndian
+        return crcUnit16
     }
 }
 
@@ -146,7 +146,7 @@ class MGPenetrateModPackage: MGPenetrateModBus {
             type == .read_input {
             self.data = []
             self.dataByteCount = dataArray[2]
-            let dataCount = self.dataByteCount%2
+            let dataCount = Int(self.dataByteCount/2)
             var dPoint: Int = 3
             for _ in 1...dataCount {
                 self.data?.append(Data(dataArray[dPoint...dPoint+1]).uint16)
@@ -155,7 +155,7 @@ class MGPenetrateModPackage: MGPenetrateModBus {
         } else if type == .set_withMultipleRegister {
             self.data = []
             self.dataByteCount = dataArray[2]
-            let dataCount = self.dataByteCount%2
+            let dataCount = Int(self.dataByteCount/2)
             var dPoint: Int = 3
             for _ in 1...dataCount {
                 self.data?.append(Data(dataArray[dPoint...dPoint+1]).uint16)

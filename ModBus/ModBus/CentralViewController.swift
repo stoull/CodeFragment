@@ -27,7 +27,7 @@ class CentralViewController: UIViewController {
     
     var bluetoothHelper: HSBluetoochManager!
     
-    let deviceSerialNumber: String = "D0BSB19003" //"D0BSB19003"
+    let deviceSerialNumber: String = "aaaaaaaaaa" //"D0BSB19003"
     
     var dauWifiList: [MGDAU_Wifi_Info]?
 
@@ -118,7 +118,7 @@ class CentralViewController: UIViewController {
         /// 测试-0x17参数设置操作
         /// 01 03 00 17 00 05 75 CC
 //        let dataArray_17: [UInt8] = [1,3,00,23,0,5,117] // CRC: 75CC
-        let rutPackage = MGPenetrateModPackage(slaveAddress: 0, registerTypeOrFunction: .read_holding, startAddress: 76, count: 1, setData: nil)
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_holding, startAddress: 0, count: 125, setData: nil)
         let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
         print("Package data: \(viaCmd.hexEncodedString().uppercased())")
     }
@@ -133,7 +133,7 @@ class CentralViewController: UIViewController {
 
         let cmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifi_lineStatus]).asData
 
-        print("0x19 cmd Data: \(cmd.hexEncodedString().uppercased())")
+        print("0x19 最终数据包: \(cmd.hexEncodedString().uppercased())")
         btleManager.writeData(with: cmd)
     }
 
@@ -148,7 +148,7 @@ class CentralViewController: UIViewController {
 //        let wifiPwd = "wifipassword".data(using: .utf8)!
 //        let cmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID: wifiName, .wifi_password: wifiPwd]).asData
         
-        print("0x18 cmd Data: \(cmd.hexEncodedString().uppercased())")
+        print("0x18 最终数据包: \(cmd.hexEncodedString().uppercased())")
         
         btleManager.writeData(with: cmd)
         
@@ -158,17 +158,17 @@ class CentralViewController: UIViewController {
 //        let wifiPwd = "Grt888888".data(using: .utf8)!
 //        let cmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_password: wifiPwd, .wifi_SSID: wifiName]).asData
 //
-//        print("0x18 cmd Data: \(cmd.hexEncodedString().uppercased())")
+//        print("0x18 最终数据包: \(cmd.hexEncodedString().uppercased())")
 //
 //        btleManager.writeData(with: cmd)
     }
     
     @IBAction func test17Commnand(_ sender: Any) {
         
-        let rutPackage = MGPenetrateModPackage(slaveAddress: 0, registerTypeOrFunction: .read_holding, startAddress: 76, count: 1, setData: nil)
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_holding, startAddress: 76, count: 2, setData: nil)
         let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
 
-        print("0x17 Cmd Data: \(viaCmd.hexEncodedString().uppercased())")
+        print("0x17 最终数据包: \(viaCmd.hexEncodedString().uppercased())")
 
         btleManager.writeData(with: viaCmd)
     }

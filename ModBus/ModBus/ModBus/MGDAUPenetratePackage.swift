@@ -46,8 +46,10 @@ class MGDAUPenetratePackage: MGModbusPackage {
     
         self.init(validData: data)
         
-        self.penetrateDataLenth = UInt16(length)
+        print("0x17 加密前有效数据：\(data.hexEncodedString().uppercased())")
+        print("0x17 透传区数据加密前数据：\(data.hexEncodedString().uppercased())")
         
+        self.penetrateDataLenth = UInt16(length)
         self.penetrateModPackage = pPackage
     }
     
@@ -86,10 +88,18 @@ class MGDAUPenetratePackage: MGModbusPackage {
            let rPackage = try? MGPenetrateModPackage(responseData: rData) {
             self.penetrateModPackage = rPackage
         }
+        
+        print("0x17 解密后有效数据：\(validData.hexEncodedString().uppercased())")
+        
+        if let rData = penetrateData,
+           let rPackage = try? MGPenetrateModPackage(responseData: rData) {
+            self.penetrateModPackage = rPackage
+            print("0x17 透传区数据解密后数据：\(rData.hexEncodedString().uppercased())")
+        }
     }
     
     /// 直接使用数据区Data发送命令
-    init(validData: Data, transactId: UInt16=0x00) {
+    init(validData: Data, transactId: UInt16=0x0001) {
         super.init(command: .DAU_via, validData: validData, transactId: transactId)
     }
 }

@@ -50,6 +50,8 @@ class MGDAUReadPackage: MGModbusPackage {
         
         self.init(validData: data)
         
+        print("0x19 加密前有效数据：\(data.hexEncodedString().uppercased())")
+        
         self.dauSerial = dauSerial
         for para in parameters {
             self.params[para] = nil
@@ -100,10 +102,12 @@ class MGDAUReadPackage: MGModbusPackage {
             params[para] = paraData
             point = point+Int(paraLen)
         }
+        
+        print("0x19 解密后有效数据：\(validData.hexEncodedString().uppercased())")
     }
     
     /// 直接使用数据区Data发送命令
-    init(validData: Data, transactId: UInt16=0x00) {
+    init(validData: Data, transactId: UInt16=0x0001) {
         super.init(command: .DAU_read, validData: validData, transactId: transactId)
     }
 }

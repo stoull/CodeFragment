@@ -18,7 +18,7 @@ class MGModbusPackage {
     var modMode: ModbusMode = .tcp
     
     /// 事务处理标识 仅tcp mode下有
-    var transactId: UInt16 = 0x00
+    var transactId: UInt16 = 0x0001
     /// 协议标识符 00 00表示ModbusTCP协议 仅tcp mode下有
     var protocolId: UInt16 = 0x0005
     /// 数据长度
@@ -34,7 +34,7 @@ class MGModbusPackage {
     
     var crc16Table: [UInt16] = []
     
-    init(command: ModCommand, validData: Data, transactId:UInt16 = 0x00) {
+    init(command: ModCommand, validData: Data, transactId:UInt16 = 0x0001) {
         self.command = command
         self.transactId = transactId
         

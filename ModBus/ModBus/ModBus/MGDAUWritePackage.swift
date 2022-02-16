@@ -62,6 +62,8 @@ class MGDAUWritePackage: MGModbusPackage {
         data = Data(dataArray)
         self.init(validData: data)
         
+        print("0x18 加密前有效数据：\(data.hexEncodedString().uppercased())")
+        
         self.dauSerial = dauSerial
         self.params = parameters
     }
@@ -97,10 +99,12 @@ class MGDAUWritePackage: MGModbusPackage {
         parasCount = Int(Data(validDataArray[10...11]).uint16)
         guard length > k_MGDAU_serialNumber_lenthg+1 else {print("0x18数据长度有误3，无状态码信息！ValidData: \(validData.hexEncodedString()).uppercased()");return}
         code = MGModBusStatusType(rawValue: validDataArray[k_MGDAU_serialNumber_lenthg+2]) ?? .unknow
+        
+        print("0x18 解密后有效数据：\(validData.hexEncodedString().uppercased())")
     }
     
     /// 直接使用数据区Data发送命令
-    init(validData: Data, transactId: UInt16=0x00) {
+    init(validData: Data, transactId: UInt16=0x0001) {
         super.init(command: .DAU_write, validData: validData, transactId: transactId)
     }
 }
