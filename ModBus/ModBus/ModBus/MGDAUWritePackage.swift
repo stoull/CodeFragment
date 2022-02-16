@@ -54,11 +54,12 @@ class MGDAUWritePackage: MGModbusPackage {
             dataArray.append(contentsOf: value)
             length = length + dataLen + 4
         }
-        let data = Data(dataArray)
+        var data = Data(dataArray)
         
         // 设置数据的长度 (准确值)
         dataArray[12] = UInt8(length >> 8)
         dataArray[13] = UInt8(length & 0xFF)
+        data = Data(dataArray)
         self.init(validData: data)
         
         self.dauSerial = dauSerial

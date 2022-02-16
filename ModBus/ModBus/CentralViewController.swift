@@ -28,6 +28,8 @@ class CentralViewController: UIViewController {
     var bluetoothHelper: HSBluetoochManager!
     
     let deviceSerialNumber: String = "D0BSB19003" //"D0BSB19003"
+    
+    var dauWifiList: [MGDAU_Wifi_Info]?
 
     convenience init() {
         self.init(nibName: "CentralViewController", bundle: nil)
@@ -116,9 +118,9 @@ class CentralViewController: UIViewController {
         /// 测试-0x17参数设置操作
         /// 01 03 00 17 00 05 75 CC
 //        let dataArray_17: [UInt8] = [1,3,00,23,0,5,117] // CRC: 75CC
-        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_holding, startAddress: UInt16(23), count: UInt16(5), setData: [UInt16(117)])
-        let pdata = rutPackage.asData()
-        print("Package data: \(pdata.hexEncodedString().uppercased())")
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 0, registerTypeOrFunction: .read_holding, startAddress: 76, count: 1, setData: nil)
+        let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
+        print("Package data: \(viaCmd.hexEncodedString().uppercased())")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -128,24 +130,11 @@ class CentralViewController: UIViewController {
 
     // MARK: - Helper Methods
     @IBAction func test19Commnand(_ sender: Any) {
-        
-        let dataA: [UInt8] = [0x00, 0x01, 0x00, 0x07, 0x00, 0x9B, 0x01, 0x19, 0x02, 0x21, 0x3F, 0x20, 0x28, 0x32, 0x3D, 0x1F, 0x2A, 0x37, 0x77, 0x60, 0x74, 0x74, 0x0C, 0x72, 0xE7, 0x7D, 0x66, 0x0E, 0x1F, 0x33, 0x17, 0x1C, 0x03, 0x50, 0xA1, 0x7E, 0x57, 0x31, 0x25, 0x20, 0x27, 0x35, 0x45, 0x77, 0x3B, 0x5F, 0x26, 0x51, 0x43, 0x44, 0x77, 0x42, 0x58, 0xA5, 0x6B, 0x7F, 0x01, 0x34, 0x10, 0x30, 0x12, 0x12, 0x04, 0x4C, 0x75, 0x44, 0x59, 0xBC, 0x6B, 0x78, 0x20, 0x22, 0x1C, 0x0B, 0x16, 0x3E, 0x30, 0x35, 0x7F, 0x30, 0x2D, 0x47, 0xAA, 0x7E, 0x71, 0x13, 0x17, 0x01, 0x13, 0x00, 0xBE, 0x7E, 0x49, 0x26, 0x3F, 0x5A, 0x2D, 0x3D, 0x3A, 0x0C, 0x2D, 0x2C, 0x41, 0x52, 0x44, 0x36, 0x77, 0xB8, 0x65, 0x7D, 0x24, 0x27, 0x24, 0x18, 0x33, 0x59, 0x42, 0x53, 0x46, 0x4D, 0x8F, 0x78, 0x64, 0x23, 0x04, 0x1A, 0x10, 0x26, 0x2D, 0x0C, 0x12, 0x12, 0x1C, 0x1D, 0x81, 0x78, 0x67, 0x23, 0x04, 0x1A, 0x10, 0x26, 0x5F, 0x58, 0x31, 0xA1, 0x7E, 0x78, 0x13, 0x17, 0x01, 0x13, 0x00, 0x2B, 0x37, 0x7F, 0x42, 0x5D, 0x47, 0x50, 0xB4, 0x1C, 0xA9]
-        
-        typealias DAU_Wifi_Info = (String, Int)
-        var dau_wifi_list: [DAU_Wifi_Info] = []
-        if let cmd = try? MGDAUReadPackage(responseData: Data(dataA)) {
-            if let wifiList = MGModPackageManager.unpackDAUWifiList(from: cmd) {
-                print("获取到采集器wifi列表：\(wifiList)")
-            } else {
-                print("采集器wifi列表解析失败")
-            }
-        }
-        
 
-//        let cmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifi_SSID]).asData
-//
-//        print("0x19 cmd Data: \(cmd.hexEncodedString().uppercased())")
-//        btleManager.writeData(with: cmd)
+        let cmd = MGDAUReadPackage(dauSerial: deviceSerialNumber, parameters: [.wifi_lineStatus]).asData
+
+        print("0x19 cmd Data: \(cmd.hexEncodedString().uppercased())")
+        btleManager.writeData(with: cmd)
     }
 
     @IBAction func test18Commnand(_ sender: Any) {
@@ -162,14 +151,25 @@ class CentralViewController: UIViewController {
         print("0x18 cmd Data: \(cmd.hexEncodedString().uppercased())")
         
         btleManager.writeData(with: cmd)
+        
+        
+        /// 测试-设置wifi信息参数
+//        let wifiName = "Tenda_DA8BB0".data(using: .utf8)!
+//        let wifiPwd = "Grt888888".data(using: .utf8)!
+//        let cmd = MGDAUWritePackage(dauSerial: deviceSerialNumber, parameters: [.wifi_password: wifiPwd, .wifi_SSID: wifiName]).asData
+//
+//        print("0x18 cmd Data: \(cmd.hexEncodedString().uppercased())")
+//
+//        btleManager.writeData(with: cmd)
     }
     
     @IBAction func test17Commnand(_ sender: Any) {
-        let rutPackage = MGPenetrateModPackage(slaveAddress: 12, registerTypeOrFunction: .read_holding, startAddress: 23, count: 1, setData: nil)
+        
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 0, registerTypeOrFunction: .read_holding, startAddress: 76, count: 1, setData: nil)
         let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
-        
+
         print("0x17 Cmd Data: \(viaCmd.hexEncodedString().uppercased())")
-        
+
         btleManager.writeData(with: viaCmd)
     }
     
@@ -262,23 +262,28 @@ extension CentralViewController: MGBTLECentralManagerDelegate {
         textView.text = textView.text + "\n" + "Raw Data: " + rawDataHex
         
         if let package = MGModPackageManager.unpackDAUPackage(withResponse: data) {
+            
             if package.command == .DAU_read,
-               let wPackage = package as? MGDAUReadPackage {
-                
-                if let wifiList = MGModPackageManager.unpackDAUWifiList(from: wPackage) {
+               let rPackage = package as? MGDAUReadPackage {
+                print("0x19 Response params: \(rPackage.params)")
+                if let wifiList = MGModPackageManager.unpackDAUWifiList(from: rPackage) {
+                    self.dauWifiList = wifiList
                     print("获取到采集器wifi列表：\(wifiList)")
                 } else {
                     print("采集器wifi列表解析失败")
                 }
                 
             } else if package.command == .DAU_write,
-                      let rPackage = package as? MGDAUWritePackage {
-                if rPackage.params.keys.contains(.wifiList) {
-                    
+                      let wPackage = package as? MGDAUWritePackage {
+                print("0x18 Response param count: \(wPackage.parasCount) code:\(wPackage.code)")
+            } else if package.command == .DAU_via,
+                      let vPackage = package as? MGDAUPenetratePackage {
+                print("0x17 penetrateDataLenth: \(vPackage.penetrateDataLenth) penetrateData:\(vPackage.penetrateData)")
+                if let rutPackage = vPackage.penetrateModPackage {
+                    print("RUT Start: \(rutPackage.registerStartAddress) count:\(rutPackage.registerCount) data: \(rutPackage.data)")
                 }
-            } else if package.command == .DAU_via {
-                
             }
+            
         }
         
     }

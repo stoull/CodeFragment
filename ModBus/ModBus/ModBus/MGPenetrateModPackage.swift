@@ -83,9 +83,9 @@ extension MGPenetrateModBus {
 
 /// Remote terminal unit 设备寄存器类型
 enum MGRTURegisterActionType: UInt8 {
-    /// 读holding寄存器
+    /// 读holding寄存器 即03号
     case read_holding = 3
-    /// 读input寄存器
+    /// 读input寄存器 即04号
     case read_input = 4
     /// 设置寄存器
     case set_register = 6

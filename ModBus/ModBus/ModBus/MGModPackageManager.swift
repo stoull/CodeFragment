@@ -8,7 +8,7 @@
 import Foundation
 
 /// 采集返回的wifi信息
-typealias MGDAU_Wifi_Info = (String, Int)
+typealias MGDAU_Wifi_Info = (String, Int8)
 
 struct MGModPackageManager {
     
@@ -25,7 +25,9 @@ struct MGModPackageManager {
                     return wPackage
                 }
             } else if command == .DAU_via {
-                
+                if let vPackage = try? MGDAUPenetratePackage(responseData: data) {
+                    return vPackage
+                }
             }
         }
         return nil
@@ -43,12 +45,14 @@ struct MGModPackageManager {
                 var point = 1 // 序列号，参数编号个数和状态码之后
                 while point < wDataArray.count {
                     let nameLen = wDataArray[point]
-                    guard wDataArray.count > point+Int(nameLen) else {return nil}
+                    guard wDataArray.count > point+Int(nameLen) else {
+                        return dau_wifi_list
+                    }
                     let nameData = wDataArray[point+1...point+Int(nameLen)]
                     let rssi = wDataArray[point+Int(nameLen)+1]
-                    
+                    let signedRssi = Int8(bitPattern: UInt8(rssi))
                     let wifiName = String(data: Data(nameData), encoding: .utf8) ?? ""
-                    let wifi: MGDAU_Wifi_Info = (wifiName, Int(rssi))
+                    let wifi: MGDAU_Wifi_Info = (wifiName, signedRssi)
                     
                     dau_wifi_list.append(wifi)
                     
