@@ -105,7 +105,7 @@ class MGPenetrateModPackage: MGPenetrateModBus {
     }
     /// 寄存器开始位置
     var registerStartAddress: UInt16
-    /// 寄存器开始位置
+    /// 寄存器数目
     var registerCount: UInt16
     /// 字节数目 (设置数据或读取到的数据的字节长度)
     var dataByteCount: UInt8 = 0

@@ -121,8 +121,8 @@ class MGBTLECentralManager: NSObject {
             print("Connecting to perhiperal %@", periph as Any)
             centralManager.connect(periph, options: nil)
             self.delegate?.centralManager(manager: self, connectionStatusDidChange: .ConnectingToPeripheral)
-            /// 设备连接成功
-            self.peripheralConnectResult?(self.currentOperateDevice!, nil)
+//            /// 设备连接成功
+//            self.peripheralConnectResult?(self.currentOperateDevice!, nil)
         } else {
             resultHandler?(device, MGError(message: MGError.kCanNotFindBTLEDeviceInfo, code: 0))
         }
@@ -435,6 +435,12 @@ extension MGBTLECentralManager: CBPeripheralDelegate {
             // 订阅特征
             peripheral.setNotifyValue(true, for: characteristic)
             print("订阅特征: \(characteristic.uuid)")
+        }
+        
+        /// 设备连接成功
+        if let block = self.peripheralConnectResult {
+            block(self.currentOperateDevice!, nil)
+            self.peripheralConnectResult = nil
         }
     }
 

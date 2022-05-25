@@ -52,6 +52,12 @@ class MGModbusPackage {
         guard dataArray.count > 8 else {
             throw MGModBusError(type: .dataError)
         }
+        
+        let sCRC = Data(dataArray[dataArray.count-2...dataArray.count-1]).uint16
+        let checkData = Data(dataArray[0...dataArray.count-3])
+        let rCrc = getCrc16(data: checkData, seed: 0xFFFF)
+        guard sCRC == rCrc else { print("CRC校验失败 "); throw MGModBusError(type: .dataError)}
+        
 //        let result = (UInt16(bytes[1]) << 8) + UInt16(bytes[0])
         self.transactId = Data(dataArray[0...1]).uint16
         self.protocolId = Data(dataArray[2...3]).uint16

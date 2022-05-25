@@ -20,5 +20,4 @@
 
 * [Bluetooth_Demo](https://github.com/stoull/Swift-Demo-Project/tree/master/CustomAnimationView) 蓝牙通信交互的实例
 
-
-Also can use pieces of code in your App.
+* [EncodingAndDecoding](https://github.com/stoull/Swift-Demo-Project/tree/master/EncodingAndDecoding) Encoding and Decoding Custom Types

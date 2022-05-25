@@ -27,7 +27,7 @@ class CentralViewController: UIViewController {
     
     var bluetoothHelper: HSBluetoochManager!
     
-    let deviceSerialNumber: String = "aaaaaaaaaa" //"D0BSB19003"
+    let deviceSerialNumber: String = "D0BSB19003" //"D0BSB19003"
     
     var dauWifiList: [MGDAU_Wifi_Info]?
 
@@ -165,7 +165,7 @@ class CentralViewController: UIViewController {
     
     @IBAction func test17Commnand(_ sender: Any) {
         
-        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_holding, startAddress: 76, count: 2, setData: nil)
+        let rutPackage = MGPenetrateModPackage(slaveAddress: 1, registerTypeOrFunction: .read_input, startAddress: 25, count: 1, setData: nil)
         let viaCmd = MGDAUPenetratePackage(dauSerial: deviceSerialNumber, penetratePackage: rutPackage).asData
 
         print("0x17 最终数据包: \(viaCmd.hexEncodedString().uppercased())")
